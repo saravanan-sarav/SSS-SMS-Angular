@@ -1,0 +1,12 @@
+<app-parent-navbar></app-parent-navbar>
+<div class="row col-12">
+  <div class="col-1"><app-parent-sidebar></app-parent-sidebar></div>
+  <div class="container col-10">
+    <h3 class="mt-4 mb-4">Student Attendance</h3>
+    <full-calendar
+      style="background-color: white; padding: 50px"
+      [options]="calendarOptions"
+      [events]="calendarEvents"
+    ></full-calendar>
+  </div>
+</div>

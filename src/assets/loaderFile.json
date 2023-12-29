@@ -1,0 +1,155 @@
+[
+  {
+    "version": "1.0",
+    "image": {
+      "name": "/home/videosdownloader/public_html/image/public/uploadt/SSS-SMS-bgremoved.png",
+      "baseName": "SSS-SMS-bgremoved.png",
+      "format": "PNG",
+      "formatDescription": "PNG",
+      "mimeType": "image/png",
+      "class": "DirectClass",
+      "geometry": {
+        "width": 286,
+        "height": 298,
+        "x": 0,
+        "y": 0
+      },
+      "resolution": {
+        "x": 37.8,
+        "y": 37.8
+      },
+      "printSize": {
+        "x": 7.56614,
+        "y": 7.8836
+      },
+      "units": "PixelsPerCentimeter",
+      "type": "TrueColorAlpha",
+      "baseType": "Undefined",
+      "endianness": "Undefined",
+      "colorspace": "sRGB",
+      "depth": 8,
+      "baseDepth": 8,
+      "channelDepth": {
+        "alpha": 8,
+        "red": 8,
+        "green": 8,
+        "blue": 8
+      },
+      "pixels": 340912,
+      "imageStatistics": {
+        "Overall": {
+          "min": 0,
+          "max": 255,
+          "mean": 62.9674,
+          "median": 0,
+          "standardDeviation": 22723.9,
+          "kurtosis": -0.307039,
+          "skewness": 1.15756,
+          "entropy": 0.394947
+        }
+      },
+      "channelStatistics": {
+        "alpha": {
+          "min": 0,
+          "max": 255,
+          "mean": 104.285,
+          "median": 0,
+          "standardDeviation": 31461.8,
+          "kurtosis": -1.82839,
+          "skewness": 0.366512,
+          "entropy": 0.235791
+        },
+        "red": {
+          "min": 0,
+          "max": 255,
+          "mean": 42.2865,
+          "median": 0,
+          "standardDeviation": 22491.1,
+          "kurtosis": 1.52342,
+          "skewness": 1.83108,
+          "entropy": 0.374889
+        },
+        "green": {
+          "min": 0,
+          "max": 253,
+          "mean": 48.776,
+          "median": 0,
+          "standardDeviation": 19019.2,
+          "kurtosis": 0.908776,
+          "skewness": 1.512,
+          "entropy": 0.470045
+        },
+        "blue": {
+          "min": 0,
+          "max": 255,
+          "mean": 56.5215,
+          "median": 0,
+          "standardDeviation": 17923.5,
+          "kurtosis": -1.18167,
+          "skewness": 0.656386,
+          "entropy": 0.499061
+        }
+      },
+      "alpha": "#00000000",
+      "renderingIntent": "Perceptual",
+      "gamma": 0.45455,
+      "chromaticity": {
+        "redPrimary": {
+          "x": 0.64,
+          "y": 0.33
+        },
+        "greenPrimary": {
+          "x": 0.3,
+          "y": 0.6
+        },
+        "bluePrimary": {
+          "x": 0.15,
+          "y": 0.06
+        },
+        "whitePrimary": {
+          "x": 0.3127,
+          "y": 0.329
+        }
+      },
+      "matteColor": "#BDBDBD",
+      "backgroundColor": "#FFFFFF",
+      "borderColor": "#DFDFDF",
+      "transparentColor": "#00000000",
+      "interlace": "None",
+      "intensity": "Undefined",
+      "compose": "Over",
+      "pageGeometry": {
+        "width": 286,
+        "height": 298,
+        "x": 0,
+        "y": 0
+      },
+      "dispose": "Undefined",
+      "iterations": 0,
+      "compression": "Zip",
+      "orientation": "Undefined",
+      "properties": {
+        "date:create": "2023-12-26T11:44:38+00:00",
+        "date:modify": "2023-12-26T11:44:38+00:00",
+        "png:cHRM": "chunk was found (see Chromaticity, above)",
+        "png:gAMA": "gamma=0.45455 (See Gamma, above)",
+        "png:IHDR.bit-depth-orig": "8",
+        "png:IHDR.bit_depth": "8",
+        "png:IHDR.color-type-orig": "6",
+        "png:IHDR.color_type": "6 (RGBA)",
+        "png:IHDR.interlace_method": "0 (Not interlaced)",
+        "png:IHDR.width,height": "286, 298",
+        "png:pHYs": "x_res=3780, y_res=3780, units=1",
+        "png:sRGB": "intent=0 (Perceptual Intent)",
+        "signature": "5c99f6aa69cdad37d57cb25d879e243537174a5f9be4bb7e60f29757e0324d3c"
+      },
+      "tainted": false,
+      "filesize": "93417B",
+      "numberPixels": "85228",
+      "pixelsPerSecond": "8.66878MB",
+      "userTime": "0.010u",
+      "elapsedTime": "0:01.009",
+      "version": "ImageMagick 7.0.10-58 Q16 x86_64 2021-01-14 https://imagemagick.org"
+    }
+  }
+]

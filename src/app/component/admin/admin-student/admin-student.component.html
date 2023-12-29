@@ -1,0 +1,218 @@
+<app-admin-navbar></app-admin-navbar>
+
+<div class="row col-12 mt-5 pt-5 px-4">
+  <div class="col-1"><app-admin-sidebar></app-admin-sidebar></div>
+  <div class="container mt-3 col-11">
+    <div class="row col-12">
+      <div class="col-7">
+        <h2>Student Information</h2>
+      </div>
+    </div>
+    <div class="table-container">
+      <!-- Filter Buttons and Search Bar -->
+      <div class="row">
+        <div class="col-8">
+          <div class="col-12">
+            <div class="dropdown">
+              <button
+                class="btn btn-primary dropdown-toggle"
+                type="button"
+                id="statusDropdown"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Select Status
+              </button>
+              <div class="dropdown-menu" aria-labelledby="statusDropdown">
+                <a class="dropdown-item" (click)="getAllStudent()">All</a>
+                <a class="dropdown-item" (click)="pendingStudentList()"
+                  >Pending</a
+                >
+                <a class="dropdown-item" (click)="withdrawStudentList()"
+                  >Withdraw</a
+                >
+                <a class="dropdown-item" (click)="graduatedStudentList()"
+                  >Graduated</a
+                >
+                <a class="dropdown-item" href="#" (click)="activeStudentList()"
+                  >Active</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="d-flex mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search By StudentId"
+              name="searchById"
+              ngModel
+              #modelSearchById="ngModel"
+              (keyup)="search($event)"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="studentUpdateList.length == 0">
+        <ng-lottie [options]="options"></ng-lottie>
+        <h1 class="text-center">No Data Found</h1>
+      </div>
+      <div *ngIf="studentUpdateList.length > 0" class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>S.no</th>
+              <th>StudentId</th>
+              <th>firstName</th>
+              <th>LastName</th>
+              <th>Standard</th>
+              <th>Gender</th>
+              <th>FatherName</th>
+              <th>Mother Name</th>
+              <th>Phone Number</th>
+              <th>Class</th>
+              <th>Student Status</th>
+              <th style="width: 110px">Date of Join</th>
+              <th>Confirm Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let student of studentUpdateList">
+              <td>{{ student.id }}</td>
+              <td>{{ student.studentUserId }}</td>
+              <td>{{ student.firstName }}</td>
+              <td>{{ student.lastName }}</td>
+              <td>{{ student.className }}</td>
+              <td>{{ student.gender }}</td>
+              <td>{{ student.fatherName }}</td>
+              <td>{{ student.motherName }}</td>
+              <td>{{ student.phoneNumber }}</td>
+              <td>
+                <select
+                  class="form-select"
+                  [(ngModel)]="student.classId"
+                  ngModel
+                  #modelClassId="ngModel"
+                >
+                  <option value="">Select Class</option>
+                  <option
+                    *ngFor="let class of classList"
+                    [ngValue]="class.classId"
+                  >
+                    {{ class.classStandard }}
+                  </option>
+                </select>
+              </td>
+              <td>
+                <select
+                  class="form-select"
+                  ngModel
+                  [(ngModel)]="student.studentStatusId"
+                  #modelStudentStatus="ngModel"
+                >
+                  <option value="">Select Status</option>
+                  <option
+                    *ngFor="let status of studentStatus"
+                    [ngValue]="status.statusId"
+                  >
+                    {{ status.status }}
+                  </option>
+                </select>
+              </td>
+              <td>{{ student.dateOfJoin }}</td>
+              <td>
+                <button
+                  class="btn btn-danger"
+                  [disabled]="!modelClassId.dirty && !modelStudentStatus.dirty"
+                  (click)="
+                    aproveStudent(
+                      student.studentUserId,
+                      modelClassId.value,
+                      modelStudentStatus.value
+                    )
+                  "
+                >
+                  Change
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div *ngIf="studentUpdateList.length > 0" class="row">
+        <div class="col-2">
+          <label>Show entries:</label>
+          <select
+            class="ms-2"
+            (change)="setListOfItems()"
+            [(ngModel)]="listPerTime"
+            style="width: 50px; height: 30px; border-radius: 10px"
+          >
+            <option *ngFor="let size of listSize" [ngValue]="size">
+              {{ size }}
+            </option>
+          </select>
+        </div>
+        <div class="col-10">
+          <div class="pagination justify-content-end">
+            <div
+              class="page-item"
+              (click)="changePage(currentPage - 1)"
+              *ngIf="currentPage > 1"
+            >
+              Previous
+            </div>
+
+            <ng-container *ngFor="let page of visiblePage">
+              <div
+                class="page-item"
+                *ngIf="page !== '...' && page !== currentPage"
+                (click)="changePage(page)"
+              >
+                {{ page }}
+              </div>
+              <div class="ellipsis" *ngIf="page === '...'">...</div>
+              <div
+                class="current-page"
+                *ngIf="page === currentPage && visiblePage.length != 1"
+              >
+                {{ page }}
+              </div>
+            </ng-container>
+
+            <div
+              class="page-item"
+              (click)="changePage(currentPage + 1)"
+              *ngIf="currentPage < totalPages"
+            >
+              Next
+            </div>
+          </div>
+          <!-- <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-end">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
+                  >Previous</a
+                >
+              </li>
+              <li
+                *ngFor="let page of pageArray; let i = index"
+                class="page-item"
+              >
+                <a class="page-link" href="#">{{ i + 1 }}</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+              </li>
+            </ul>
+          </nav> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

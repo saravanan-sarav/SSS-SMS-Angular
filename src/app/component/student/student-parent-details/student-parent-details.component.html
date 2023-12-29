@@ -1,0 +1,119 @@
+<app-student-navbar></app-student-navbar>
+<div class="row col-12">
+  <div class="col-1"><app-student-sidebar></app-student-sidebar></div>
+  <div class="container mt-2 col-10">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h3 class="mb-0">Parent Details</h3>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <img
+              src="../../../../assets/images/teacher.jpg"
+              alt="teacher"
+              class="img-fluid rounded"
+            />
+          </div>
+          <div class="col-md-8">
+            <div
+              class="header-inline item-header d-flex justify-content-between"
+            >
+              <h3 class="text-dark-medium font-weight-medium">
+                <span style="font-size: large"> Father Name:</span>
+                {{ studentParentProfile.fatherName }}
+              </h3>
+              <h3 class="text-dark-medium font-weight-medium">
+                <span style="font-size: large"> Mother Name:</span>
+                {{ studentParentProfile.motherName }}
+              </h3>
+              <div class="header-elements">
+                <ul class="d-flex list-unstyled">
+                  <li>
+                    <a href="#"><i class="mx-2 fa-2x fas fa-print"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <tbody>
+                  <tr>
+                    <td>Father Name:</td>
+                    <td class="font-weight-medium">
+                      {{ studentParentProfile.fatherName }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Father Occupation:</td>
+                    <td class="font-weight-medium">
+                      {{ studentParentProfile.fatherOccupation }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Father Phone Number:</td>
+                    <td class="font-weight-medium">
+                      {{ studentParentProfile.fatherPhoneNumber }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Mother Name:</td>
+                    <td class="font-weight-medium">
+                      {{ studentParentProfile.motherName }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Mother Occupation:</td>
+                    <td class="font-weight-medium">
+                      {{ studentParentProfile.motherOccupation }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Mother Phone Number:</td>
+                    <td class="font-weight-medium">
+                      {{ studentParentProfile.motherPhoneNumber }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>E-mail:</td>
+                    <td class="font-weight-medium">
+                      {{ studentParentProfile.email }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Address:</td>
+                    <td class="font-weight-medium">
+                      {{ studentParentProfile.doorNum }},{{
+                        studentParentProfile.street
+                      }},{{ studentParentProfile.addrLine }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>City:</td>
+                    <td class="font-weight-medium">
+                      {{ studentParentProfile.city }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>State:</td>
+                    <td class="font-weight-medium">
+                      {{ studentParentProfile.state }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Pincode:</td>
+                    <td class="font-weight-medium">
+                      {{ studentParentProfile.pincode }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

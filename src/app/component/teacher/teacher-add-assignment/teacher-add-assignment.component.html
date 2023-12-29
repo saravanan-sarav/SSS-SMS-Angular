@@ -1,0 +1,247 @@
+<app-teacher-navbar></app-teacher-navbar>
+<div class="row col-12">
+  <div class="col-1">
+    <app-teacher-sidebar></app-teacher-sidebar>
+  </div>
+  <div class="container mt-3 mb-3 col-4">
+    <div class="d-flex justify-content-between">
+      <div><h2 class="mb-4">Create Assignment</h2></div>
+    </div>
+    <form
+      #addAssignment="ngForm"
+      (ngSubmit)="addAssignmentTeacher(addAssignment)"
+    >
+      <div class="mb-2">
+        <input
+          type="hidden"
+          class="form-control"
+          name="assignmentId"
+          [(ngModel)]="assignmentId"
+          ngModel
+        />
+      </div>
+      <div class="mb-2">
+        <label for="standard" class="form-label">Select Class</label>
+        <select
+          class="form-select"
+          name="classId"
+          ngModel
+          required
+          #modelClass="ngModel"
+          [disabled]="isSelected"
+          [minlength]="1"
+          [ngClass]="
+            modelClass.touched && modelClass.invalid ? 'is-invalid' : ''
+          "
+        >
+          <option value="" selected>Select Class</option>
+          <option *ngFor="let cls of class" [ngValue]="cls.classId">
+            ClassId : {{ cls.classId }}, Class Standard :
+            {{ cls.classStandard }}
+          </option>
+        </select>
+
+        <div style="height: 20px">
+          <div *ngIf="modelClass.invalid" style="color: red">
+            <div
+              *ngIf="
+                (modelClass.hasError('required') && modelClass.touched) ||
+                modelClass.dirty
+              "
+            >
+              Standard is Required.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-2">
+        <label for="assignmentType" class="form-label"
+          >Select Assignment Type</label
+        >
+        <div class="search-input">
+          <input
+            type="text"
+            class="form-control"
+            name="assignmentType"
+            ngModel
+            required
+            #modelClass="ngModel"
+            [disabled]="isSelected"
+            [minlength]="1"
+            [(ngModel)]="assignmentTypeSelection"
+            placeholder="Type to search..."
+            (keyup)="filterItems()"
+          />
+          <ul class="searchFilter">
+            <li
+              class="listData"
+              *ngFor="let assignmentType of filteredAssignmentType"
+              (click)="selectAssignmentType(assignmentType.assignmentType)"
+            >
+              {{ assignmentType.assignmentType }}
+            </li>
+          </ul>
+        </div>
+
+        <!-- <div style="height: 20px">
+          <div *ngIf="modelAssignmentType.invalid" style="color: red">
+            <div
+              *ngIf="
+                (modelAssignmentType.hasError('required') &&
+                  modelAssignmentType.touched) ||
+                modelAssignmentType.dirty
+              "
+            >
+              Assignement Type is Required.
+            </div>
+          </div>
+        </div> -->
+      </div>
+
+      <div class="mb-2">
+        <label for="subject" class="form-label">Select Subject</label>
+        <select
+          class="form-select"
+          name="subjectId"
+          [disabled]="isSelected"
+          ngModel
+          required
+          #modelSubject="ngModel"
+        >
+          <option value="">Select Subject</option>
+          <option
+            *ngFor="let subject of subjects"
+            [ngValue]="subject.subjectId"
+          >
+            {{ subject.subject }}
+          </option>
+          <!-- Add more options as needed -->
+        </select>
+        <div style="height: 20px">
+          <div *ngIf="modelSubject.invalid" style="color: red">
+            <div
+              *ngIf="
+                (modelSubject.hasError('required') && modelSubject.touched) ||
+                modelSubject.dirty
+              "
+            >
+              Subject is Required.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-2">
+        <label for="dueDate" class="form-label">Due Date</label>
+        <input
+          type="date"
+          class="form-control"
+          name="deadline"
+          ngModel
+          required
+          [min]="todayDate"
+          #modelDueDate="ngModel"
+        />
+        <div style="height: 20px">
+          <div *ngIf="modelDueDate.invalid" style="color: red">
+            <div
+              *ngIf="
+                (modelDueDate.hasError('required') && modelDueDate.touched) ||
+                modelDueDate.dirty
+              "
+            >
+              DueDate is Required.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-2">
+        <label for="totalMark" class="form-label">Total Mark</label>
+        <input
+          type="number"
+          class="form-control"
+          name="totalGrade"
+          ngModel
+          [(ngModel)]="totalGrade"
+          required
+          #modelTotalMark="ngModel"
+        />
+        <div style="height: 20px">
+          <div *ngIf="modelTotalMark.invalid" style="color: red">
+            <div
+              *ngIf="
+                (modelTotalMark.hasError('required') &&
+                  modelTotalMark.touched) ||
+                modelTotalMark.dirty
+              "
+            >
+              TotalMark is Required.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-2">
+        <label for="totalMark" class="form-label">Minimum Mark</label>
+        <input
+          type="number"
+          class="form-control"
+          name="minScore"
+          [(ngModel)]="minMark"
+          ngModel
+          #modelMinMark="ngModel"
+        />
+
+        <div style="height: 20px">
+          <div style="color: red" *ngIf="totalGrade < minMark">
+            Mark should be less than Total Mark.
+          </div>
+          <div *ngIf="modelMinMark.invalid" style="color: red">
+            <div
+              *ngIf="
+                (modelMinMark.hasError('required') && modelMinMark.touched) ||
+                modelMinMark.dirty
+              "
+            >
+              Minimum mark is Required.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-2">
+        <label for="comments" class="form-label">Comments</label>
+        <textarea
+          class="form-control"
+          name="comments"
+          ngModel
+          rows="2"
+          required
+          #modelComments="ngModel"
+        ></textarea>
+        <div style="height: 20px">
+          <div *ngIf="modelComments.invalid" style="color: red">
+            <div
+              *ngIf="
+                (modelComments.hasError('required') && modelComments.touched) ||
+                modelComments.dirty
+              "
+            >
+              Comments is Required.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="addAssignment.invalid"
+      >
+        Publish Assignment
+      </button>
+    </form>
+  </div>
+  <div class="col-5"></div>
+</div>

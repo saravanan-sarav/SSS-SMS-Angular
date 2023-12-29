@@ -1,0 +1,228 @@
+<div *ngIf="isApproved">
+  <app-parent-navbar></app-parent-navbar>
+
+  <div class="row col-12">
+    <div class="col-1"><app-parent-sidebar></app-parent-sidebar></div>
+    <div class="container col-10">
+      <div class="row">
+        <!-- Assignment Conent -->
+        <div class="mt-3">
+          <!-- Student Attendance Status -->
+          <div class="row col-12 mt-3">
+            <div class="col-md-6 col-lg-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-4">
+                      <div class="item-icon">
+                        <i
+                          style="color: var(--primary-900)"
+                          class="fas fa-users fa-3x"
+                        ></i>
+                      </div>
+                    </div>
+                    <div class="col-8">
+                      <div class="item-content">
+                        <div class="fs-6 item-title">Today Attendance</div>
+                        <div class="fs-5 item-number">Present</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container col-12">
+            <div class="row">
+              <!-- Assignment Conent -->
+              <div>
+                <div class="table-container mt-3 p-3 bg-white">
+                  <h2 class="mt-3 mb-4">My Assignments</h2>
+                  <div class="d-flex col-4">
+                    <div class="input-group col-3 mb-3">
+                      <input
+                        type="text"
+                        class="form-control m-1 col-3"
+                        placeholder="Search By AssignmentID"
+                        aria-label="Search"
+                        aria-describedby="button-addon2"
+                      />
+                      <a
+                        class="btn btn-outline-secondary m-1"
+                        type="button"
+                        id="button-addon2"
+                        >Search</a
+                      >
+                    </div>
+                  </div>
+
+                  <div class="table-responsive">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>S.no</th>
+                          <th>AssignmentName</th>
+                          <th>Subject</th>
+                          <th style="width: 120px">Comments</th>
+                          <th>Created Date</th>
+                          <th>Due date</th>
+                          <th>Status</th>
+                          <th style="width: 100px">Student Mark</th>
+                          <th>Total mark</th>
+                          <th>Submit Comments</th>
+                          <th>Pass/Fail</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          *ngFor="
+                            let assignment of studentAssignmentList;
+                            let indexOfElement = index
+                          "
+                        >
+                          <!-- Sample Data - Replace with your actual data -->
+                          <td>{{ indexOfElement + 1 }}</td>
+                          <td>{{ assignment.assignmentType }}</td>
+                          <td>{{ assignment.subjects }}</td>
+                          <td>
+                            <textarea
+                              disabled
+                              style="
+                                border-color: var(--primary-900);
+                                border-radius: 3px;
+                              "
+                              cols="20"
+                              rows="2"
+                              >{{ assignment.comments }}</textarea
+                            >
+                          </td>
+                          <td>{{ assignment.createdDate }}</td>
+                          <td>{{ assignment.dueDate }}</td>
+                          <td>
+                            <p
+                              [ngClass]="
+                                assignment.obtainedMark != null
+                                  ? 'status_submitted'
+                                  : 'status_pending'
+                              "
+                            >
+                              {{
+                                assignment.obtainedMark != null
+                                  ? "Submitted"
+                                  : "Pending"
+                              }}
+                            </p>
+                          </td>
+                          <td>{{ assignment.obtainedMark }}</td>
+                          <td>{{ assignment.totalMark }}</td>
+                          <td>
+                            <textarea
+                              disabled
+                              style="
+                                border-color: var(--primary-900);
+                                border-radius: 3px;
+                              "
+                              cols="20"
+                              rows="2"
+                              >{{ assignment.submitComments }}</textarea
+                            >
+                          </td>
+                          <td>
+                            <p
+                              [ngClass]="
+                                assignment.obtainedMark > assignment.minMark &&
+                                assignment.obtainedMark != null
+                                  ? 'status_submitted'
+                                  : '' ||
+                                    (assignment.obtainedMark <
+                                      assignment.minMark &&
+                                      assignment.obtainedMark != null)
+                                  ? 'status_pending'
+                                  : ''
+                              "
+                            >
+                              {{
+                                assignment.obtainedMark > assignment.minMark &&
+                                assignment.obtainedMark != null
+                                  ? "Pass"
+                                  : ""
+                              }}
+                              {{
+                                assignment.obtainedMark < assignment.minMark &&
+                                assignment.obtainedMark !== null
+                                  ? "fail"
+                                  : ""
+                              }}
+                              {{ assignment.obtainedMark === null ? "-" : "" }}
+                            </p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="d-flex justify-content-between">
+                    <p>
+                      <span style="font-weight: 900">Total Count: </span
+                      >{{ studentAssignmentList.length }}
+                    </p>
+                    <!-- <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                      <li class="page-item">
+                        <a class="page-link" href="#">Previous</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">1</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">2</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">3</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                      </li>
+                    </ul>
+                  </nav> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!isApproved">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header text-center">
+            <h2>Your Account is Inactive</h2>
+          </div>
+          <div class="card-body">
+            <p>
+              Your account is currently inactive and is awaiting review by the
+              administrator. Please be patient while we process your request.
+            </p>
+            <p>
+              If you have any urgent concerns, you may contact our support team.
+            </p>
+            <a
+              href="mailto:saravanan1234horo@gmail.com"
+              class="btn btn-primary btn-block"
+              >Contact Support</a
+            >
+            <a (click)="logout()" class="btn btn-danger btn-block ms-3"
+              >LogOut</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

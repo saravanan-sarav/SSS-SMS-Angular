@@ -1,0 +1,29 @@
+.container {
+  margin-top: 100px;
+}
+
+.error-container {
+  text-align: center;
+}
+
+.error-code {
+  font-size: 144px;
+  color: #dc3545;
+}
+
+.error-message {
+  font-size: 24px;
+  color: #6c757d;
+}
+
+.back-home-link {
+  margin-top: 20px;
+  display: inline-block;
+  text-decoration: none;
+  font-size: 18px;
+  color: #007bff;
+}
+
+.back-home-link:hover {
+  text-decoration: underline;
+}

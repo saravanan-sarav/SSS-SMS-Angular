@@ -1,0 +1,101 @@
+<app-admin-navbar></app-admin-navbar>
+<div class="row col-12 mt-5">
+  <div class="col-1"><app-admin-sidebar></app-admin-sidebar></div>
+
+  <div class="container mt-5 col-10">
+    <div class="row">
+      <!-- Student Count -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-4">
+                <div class="item-icon">
+                  <i
+                    style="color: var(--primary-300)"
+                    class="fas fa-users fa-3x"
+                  ></i>
+                </div>
+              </div>
+              <div class="col-8">
+                <div class="item-content">
+                  <div class="fs-6 item-title">Student Count</div>
+                  <div class="fs-5 item-number">{{ studentCount }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Teacher Count -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-4">
+                <div class="item-icon">
+                  <i
+                    style="color: var(--primary-300)"
+                    class="fas fa-3x fa-chalkboard-teacher"
+                  ></i>
+                </div>
+              </div>
+              <div class="col-8">
+                <div class="item-content">
+                  <div class="fs-6 item-title">Teacher Count</div>
+                  <div class="fs-5 item-number">{{teacherCount}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Assignments Count -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-4">
+                <div class="item-icon">
+                  <i
+                    style="color: var(--primary-300)"
+                    class="fas fa-3x fa-file-alt"
+                  ></i>
+                </div>
+              </div>
+              <div class="col-8">
+                <div class="item-content">
+                  <div class="fs-6 item-title">Assignment Count</div>
+                  <div class="fs-5 item-number">{{assignmentCount}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Attendance -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-4">
+                <div class="item-icon">
+                  <i
+                    style="color: var(--primary-300)"
+                    class="fas fa-3x fa-user-check"
+                  ></i>
+                </div>
+              </div>
+              <div class="col-8">
+                <div class="item-content">
+                  <div class="fs-6 item-title">Today Present</div>
+                  <div class="fs-5 item-number">{{todayPresent}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

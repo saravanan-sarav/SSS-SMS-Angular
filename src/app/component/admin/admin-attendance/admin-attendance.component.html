@@ -1,0 +1,111 @@
+<app-admin-navbar></app-admin-navbar>
+<div class="row col-12 mt-5">
+  <div class="col-1"><app-admin-sidebar></app-admin-sidebar></div>
+  <div class="container col-10">
+    <div class="container mt-5">
+      <h2>Attendance</h2>
+
+      <!-- Select Class Dropdown -->
+      <div class="form-group mt-3 col-4">
+        <label for="selectClass" class="fs-5 mb-2"
+          >Select Class for View Attendance:</label
+        >
+        <select
+          class="form-control"
+          name="selectClass"
+          ngModel
+          #modelClass="ngModel"
+          required
+          (ngModelChange)="getStudentList(modelClass.value)"
+          [(ngModel)]="classId"
+        >
+          <option value="">Select Class...</option>
+          <option *ngFor="let class of classList" [ngValue]="class.classId">
+            {{ class.classStandard }}
+          </option>
+          <!-- Add more options as needed -->
+        </select>
+      </div>
+
+      <!-- Student List Table -->
+      <div *ngIf="modelClass.valid" class="mt-5 mb-3">
+        <h4 class="mb-3">Students</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>S.no</th>
+              <th>StudentID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>ClassId</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Sample data, replace with your actual data -->
+            <tr
+              *ngFor="
+                let student of classStudentList;
+                let indexOfElement = index
+              "
+            >
+              <td>{{ indexOfElement + 1 }}</td>
+              <td>{{ student.studentId }}</td>
+              <td>{{ student.firstName }}</td>
+              <td>{{ student.lastName }}</td>
+              <td>{{ student.standard }}</td>
+              <td>
+                <a
+                  (click)="updateCalendar()"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#viewModal"
+                  >View</a
+                >
+              </td>
+            </tr>
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Bootstrap Modal for View -->
+      <div
+        class="modal fade"
+        id="viewModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="viewModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog min-vw-100" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="viewModalLabel">Student Details</h5>
+              <button
+                type="button"
+                class="close"
+                data-bs-dismiss="modal"
+                aria-bs-label="Close"
+              >
+                <span aria-bs-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-body min-vh-100 showAttendance">
+    <div style="background-color: white" class="container p-4">
+      <div>
+        <a class="btn btn-primary text-end">Close</a>
+      </div>
+      <full-calendar
+        style="background-color: white; padding: 50px"
+        [options]="calendarOptions"
+        [events]="calendarEvents"
+      ></full-calendar>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+      <ul class="list-unstyled components text-center">
+        <!-- ClassRoom -->
+        <li>
+          <a
+            routerLink="/student/home/classroom"
+            routerLinkActive="sidebarActive"
+            [routerLinkActiveOptions]="{ exact: true }"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Classroom"
+          >
+            <i class="fas fa-school"></i>
+            <div>Classroom</div>
+          </a>
+        </li>
+        <!-- Assignment -->
+        <li>
+          <a
+            routerLink="/student/home/assignments"
+            routerLinkActive="sidebarActive"
+            [routerLinkActiveOptions]="{ exact: true }"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Assignments"
+          >
+            <i class="fas fa-tasks"></i>
+            <div>Assignments</div>
+          </a>
+        </li>
+        <!-- Attendance -->
+        <li>
+          <a
+            routerLink="/student/home/attendance"
+            routerLinkActive="sidebarActive"
+            [routerLinkActiveOptions]="{ exact: true }"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Attendance"
+          >
+            <i class="fas fa-clipboard-check"></i>
+            <div>Attendance</div>
+          </a>
+        </li>
+        <!-- Parent -->
+        <li>
+          <a
+            routerLink="/student/home/parent"
+            routerLinkActive="sidebarActive"
+            [routerLinkActiveOptions]="{ exact: true }"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Parent"
+          >
+            <i class="fas fa-users"></i>
+            <div>Parent</div>
+          </a>
+        </li>
+
+        <li>
+          <a
+            routerLink="/student/home/profile"
+            routerLinkActive="sidebarActive"
+            [routerLinkActiveOptions]="{ exact: true }"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Parent"
+          >
+            <i class="fas fa-users"></i>
+            <div>My Profile</div>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Page Content -->
+  </div>
+</div>

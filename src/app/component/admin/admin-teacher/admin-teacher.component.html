@@ -1,0 +1,76 @@
+<app-admin-navbar></app-admin-navbar>
+<div class="row col-12 mt-5 pt-3">
+  <div class="col-1"><app-admin-sidebar></app-admin-sidebar></div>
+  <div class="container mt-4 col-10">
+    <div class="row">
+      <div class="col-md-12 text-right d-flex justify-content-between">
+        <p class="fs-3 text-left">My Teachers</p>
+        <div>
+          <button routerLink="/admin/add-teacher" class="btn btn-primary">
+            Add Teacher
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-md-4">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search" />
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th>S.no</th>
+          <th>TeacherId</th>
+          <th>Name</th>
+          <th>Subject</th>
+          <th>Class Incharge</th>
+          <th>Phone Number</th>
+          <th>Email</th>
+          <th>Date Of Birth</th>
+          <th>Date Of Join</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Add your entries here -->
+        <tr *ngFor="let teacher of teacherDetails">
+          <td>{{ teacher.id }}</td>
+          <td>{{ teacher.teacherId }}</td>
+          <td>{{ teacher.name }}</td>
+          <td>{{ teacher.subject }}</td>
+          <td>
+            {{ teacher.classInCharge !== null ? teacher.classInCharge : "-" }}
+          </td>
+          <td>{{ teacher.phoneNumber }}</td>
+          <td>{{ teacher.email }}</td>
+          <td>{{ teacher.dateOfBirth }}</td>
+          <td>{{ teacher.dateOfJoin }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="row">
+      <div class="col-md-6">
+        <p class="fs-5">Total entries:{{ teacherDetails.length }}</p>
+      </div>
+      <div class="col-md-6 text-right">
+        <ul class="pagination">
+          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

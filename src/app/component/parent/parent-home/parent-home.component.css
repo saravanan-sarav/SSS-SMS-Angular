@@ -1,0 +1,15 @@
+.status_pending {
+  color: white;
+  text-align: center;
+  background-color: red;
+  padding: 5px;
+  border-radius: 20px;
+}
+
+.status_submitted {
+  color: white;
+  text-align: center;
+  background-color: green;
+  padding: 5px;
+  border-radius: 20px;
+}

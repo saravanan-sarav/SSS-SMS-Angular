@@ -1,0 +1,205 @@
+<app-teacher-navbar></app-teacher-navbar>
+<div class="row col-12">
+  <div class="col-1"><app-teacher-sidebar></app-teacher-sidebar></div>
+  <div class="container col-10 mt-5">
+    <h5>Assignment Mark Entry</h5>
+    <div class="col-6 d-flex">
+      <div class="col-8">
+        <label for="assignmentSelect">Select Assignment:</label>
+        <select
+          id="assignmentSelect"
+          name="selectedAssignment"
+          class="form-control"
+          ngModel
+          (ngModelChange)="assignmentSelect(modelAssginment)"
+          required
+          #modelAssginment="ngModel"
+        >
+          <option value="">Select Assignment</option>
+          <option
+            *ngFor="let assignment of assignmentDetails"
+            [ngValue]="assignment.assignmentId"
+          >
+            {{ assignment.assignmentId }}.{{ assignment.assignmentName }} ,
+            {{ assignment.createdDate }}
+          </option>
+        </select>
+        <div style="height: 20px">
+          <div *ngIf="modelAssginment.invalid" style="color: red">
+            <div
+              *ngIf="
+                (modelAssginment.hasError('required') &&
+                  modelAssginment.touched) ||
+                modelAssginment.dirty
+              "
+            >
+              AssignmentId is Required.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <ul class="list-group">
+          <li class="list-group-item">
+            Assignment Id :
+            <span style="font-weight: 900">{{
+              assignmentDeatail.assignmentId != 0
+                ? assignmentDeatail.assignmentId
+                : ""
+            }}</span>
+          </li>
+          <li class="list-group-item">
+            Assignment Name :
+            <span style="font-weight: 900">{{
+              assignmentDeatail.assignmentName != null
+                ? assignmentDeatail.assignmentName
+                : ""
+            }}</span>
+          </li>
+          <li class="list-group-item">
+            Class :
+            <span style="font-weight: 900">{{
+              assignmentDeatail.assignmentId != 0
+                ? assignmentDeatail.assignmentId
+                : ""
+            }}</span>
+          </li>
+          <li class="list-group-item">
+            Teacher Name :
+            <span style="font-weight: 900">{{
+              assignmentDeatail.teacherName != null
+                ? assignmentDeatail.teacherName
+                : ""
+            }}</span>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-group">
+          <li class="list-group-item">
+            Subject :
+            <span style="font-weight: 900">{{
+              assignmentDeatail.subjectName != null
+                ? assignmentDeatail.subjectName
+                : ""
+            }}</span>
+          </li>
+          <li class="list-group-item">
+            Due date :
+            <span style="font-weight: 900">{{
+              assignmentDeatail.dueDate != null ? assignmentDeatail.dueDate : ""
+            }}</span>
+          </li>
+          <li class="list-group-item">
+            Total Mark :
+            <span style="font-weight: 900">{{
+              assignmentDeatail.totalMark != 0
+                ? assignmentDeatail.totalMark
+                : ""
+            }}</span>
+          </li>
+          <li class="list-group-item">
+            Minimum Mark :
+            <span style="font-weight: 900">{{
+              assignmentDeatail.minScore != 0 ? assignmentDeatail.minScore : ""
+            }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>S.no</th>
+            <th>StudentID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Comments</th>
+            <th>Student Mark</th>
+            <th>Submit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let student of studentDetails; let indexOfElement = index"
+          >
+            <td>{{ indexOfElement + 1 }}</td>
+            <td>{{ student.studentUserid }}</td>
+            <td>{{ student.firstName }}</td>
+            <td>{{ student.lastName }}</td>
+            <td>
+              <input
+                type="text"
+                name="comments"
+                class="form-control"
+                [(ngModel)]="student.comments"
+                required
+                #modelComments="ngModel"
+                [value]="student.comments != null ? student.comments : ''"
+              />
+            </td>
+            <td>
+              <input
+                type="number"
+                class="form-control"
+                name="markObtained"
+                [(ngModel)]="student.studentMark"
+                maxlength="4"
+                #modelMarkObtained="ngModel"
+                required=""
+                [value]="null"
+              />
+            </td>
+            <td>
+              <button
+                (click)="
+                  entryMark(
+                    student.assignmentGradeId,
+                    student.studentUserid,
+                    modelComments.value,
+                    modelMarkObtained.value
+                  )
+                "
+                type="submit"
+                [disabled]="
+                  modelMarkObtained.invalid &&
+                  modelComments.invalid &&
+                  modelAssginment.untouched &&
+                  modelComments.untouched
+                "
+                class="btn btn-success"
+              >
+                Submit
+              </button>
+            </td>
+          </tr>
+
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="d-flex justify-content-between mt-3">
+      <p>Page 1 of 1</p>
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          <li class="page-item disabled">
+            <span class="page-link">Previous</span>
+          </li>
+          <li class="page-item active">
+            <span class="page-link"
+              >1 <span class="sr-only">(current)</span></span
+            >
+          </li>
+          <li class="page-item disabled">
+            <span class="page-link">Next</span>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<app-student-navbar></app-student-navbar>
+<div class="row col-12">
+  <div class="col-1"><app-student-sidebar></app-student-sidebar></div>
+  <div class="container col-10 mt-3 mb-5">
+    <div class="calendar-container">
+      <full-calendar
+        style="background-color: white; padding: 50px"
+        [options]="calendarOptions"
+        [events]="calendarEvents"
+      ></full-calendar>
+    </div>
+  </div>
+</div>

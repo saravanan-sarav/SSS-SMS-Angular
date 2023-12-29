@@ -1,0 +1,138 @@
+<div *ngIf="isApproved">
+  <app-student-navbar></app-student-navbar>
+  <div class="row col-12">
+    <div class="col-1"><app-student-sidebar></app-student-sidebar></div>
+    <div>
+      <div class="container mt-5 col-10">
+        <div class="row">
+          <!-- Student Count -->
+          <div class="col-md-6 col-lg-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="item-icon">
+                      <i
+                        style="color: var(--primary-300)"
+                        class="fas fa-users fa-3x"
+                      ></i>
+                    </div>
+                  </div>
+                  <div class="col-8">
+                    <div class="item-content">
+                      <div class="fs-6 item-title">Student Count</div>
+                      <div class="fs-5 item-number">400</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Teacher Count -->
+          <div class="col-md-6 col-lg-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="item-icon">
+                      <i
+                        style="color: var(--primary-300)"
+                        class="fas fa-3x fa-chalkboard-teacher"
+                      ></i>
+                    </div>
+                  </div>
+                  <div class="col-8">
+                    <div class="item-content">
+                      <div class="fs-6 item-title">Teacher Count</div>
+                      <div class="fs-5 item-number">30</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Assignments Count -->
+          <div class="col-md-6 col-lg-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="item-icon">
+                      <i
+                        style="color: var(--primary-300)"
+                        class="fas fa-3x fa-file-alt"
+                      ></i>
+                    </div>
+                  </div>
+                  <div class="col-8">
+                    <div class="item-content">
+                      <div class="fs-6 item-title">Assignment Count</div>
+                      <div class="fs-5 item-number">40</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Attendance -->
+          <div class="col-md-6 col-lg-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="item-icon">
+                      <i
+                        style="color: var(--primary-300)"
+                        class="fas fa-3x fa-user-check"
+                      ></i>
+                    </div>
+                  </div>
+                  <div class="col-8">
+                    <div class="item-content">
+                      <div class="fs-6 item-title">Today Present</div>
+                      <div class="gs-5 item-number">450</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!isApproved">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header text-center">
+            <h2>Your Account is Inactive</h2>
+          </div>
+          <div class="card-body">
+            <p>
+              Your account is currently inactive and is awaiting review by the
+              administrator. Please be patient while we process your request.
+            </p>
+            <p>
+              If you have any urgent concerns, you may contact our support team.
+            </p>
+            <a
+              href="mailto:saravanan1234horo@gmail.com"
+              class="btn btn-primary btn-block"
+              >Contact Support</a
+            >
+            <a
+              (click)="logout()"
+              href="mailto:saravanan1234horo@gmail.com"
+              class="btn btn-danger btn-block ms-3"
+              >LogOut</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <nav id="sidebar">
+        <ul class="list-unstyled components text-center">
+          <li>
+            <a
+              routerLink="/admin/home/students"
+              routerLinkActive="sidebarActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+              data-toggle="tooltip"
+              data-placement="right"
+              title="Students"
+            >
+              <i class="fas fa-user-graduate"></i>
+              <div>Students</div>
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/admin/home/teachers"
+              routerLinkActive="sidebarActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+              data-toggle="tooltip"
+              data-placement="right"
+              title="Teachers"
+            >
+              <i class="fas fa-chalkboard-teacher"></i>
+              <div>Teachers</div>
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/admin/home/classes"
+              routerLinkActive="sidebarActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+              data-toggle="tooltip"
+              data-placement="right"
+              title="Classroom"
+            >
+              <i class="fas fa-school"></i>
+              <div>Classroom</div>
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/admin/home/assignments"
+              routerLinkActive="sidebarActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+              data-toggle="tooltip"
+              data-placement="right"
+              title="Assignments"
+            >
+              <i class="fas fa-tasks"></i>
+              <div>Assignments</div>
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/admin/home/attendance"
+              routerLinkActive="sidebarActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+              data-toggle="tooltip"
+              data-placement="right"
+              title="Attendance"
+            >
+              <i class="fas fa-clipboard-check"></i>
+              <div>Attendance</div>
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/admin/home/parents"
+              routerLinkActive="sidebarActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+              data-toggle="tooltip"
+              data-placement="right"
+              title="Parents"
+            >
+              <i class="fas fa-users"></i>
+              <div>Parents</div>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Page Content -->
+    </div>
+  </div>

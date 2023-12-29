@@ -1,0 +1,128 @@
+<app-parent-navbar></app-parent-navbar>
+<div class="row col-12">
+  <div class="col-1"><app-parent-sidebar></app-parent-sidebar></div>
+
+  <div class="container mt-2 col-10">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h3 class="mb-0">Personal Details</h3>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <img
+              src="../../../../assets/images/teacher.jpg"
+              alt="teacher"
+              class="img-fluid rounded"
+            />
+          </div>
+          <div class="col-md-8">
+            <div
+              class="header-inline item-header d-flex justify-content-between"
+            >
+              <h3 class="text-dark-medium font-weight-medium">
+                {{ studentProfile.studentFirstName }}
+                {{ studentProfile.studentLastName }}
+              </h3>
+              <div class="header-elements">
+                <ul class="d-flex list-unstyled">
+                  <li>
+                    <a href="#"><i class="mx-2 fa-2x far fa-edit"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="mx-2 fa-2x fas fa-print"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <p>
+              <span style="font-weight: 900">Class : </span>
+              {{ studentProfile.classStandard }}
+            </p>
+            <p>
+              <span style="font-weight: 900">Student Status : </span>
+              {{ studentProfile.studentStatus }}
+            </p>
+
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <tbody>
+                  <tr>
+                    <td>Student ID</td>
+                    <td class="font-weight-medium">
+                      {{ studentProfile.studentId }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Name:</td>
+                    <td class="font-weight-medium">
+                      {{ studentProfile.studentFirstName }}
+                      {{ studentProfile.studentLastName }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Class</td>
+                    <td class="font-weight-medium">
+                      {{ studentProfile.classStandard }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Student Status</td>
+                    <td class="font-weight-medium">
+                      {{ studentProfile.studentStatus }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Gender:</td>
+                    <td class="font-weight-medium">
+                      {{ studentProfile.gender }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Date Of Birth</td>
+                    <td class="font-weight-medium">
+                      {{ studentProfile.dateOfBirth }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Date Of Join</td>
+                    <td class="font-weight-medium">
+                      {{ studentProfile.dateOfJoin }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Address:</td>
+                    <td class="font-weight-medium">
+                      {{ studentProfile.doorNum }},{{
+                        studentProfile.street
+                      }},{{ studentProfile.addrLine }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>City:</td>
+                    <td class="font-weight-medium">
+                      {{ studentProfile.city }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>State:</td>
+                    <td class="font-weight-medium">
+                      {{ studentProfile.state }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Pincode:</td>
+                    <td class="font-weight-medium">
+                      {{ studentProfile.pincode }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

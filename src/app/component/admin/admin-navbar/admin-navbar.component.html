@@ -1,0 +1,45 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-light">
+  <img
+    routerLink="/admin/home"
+    class="navbar-brand logo-image rounded-circle ms-4"
+    src="../../../../assets/images/SSS-SMS-bgremoved.png"
+    alt="Logo"
+  />
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div
+    class="collapse navbar-collapse d-flex justify-content-between"
+    id="navbarSupportedContent"
+  >
+    <ul class="navbar-nav mr-auto ms-3">
+      <i class="fas fa-user fa-2x user-icon text-white icon_user_name"></i>
+      <p class="user_name fs-4">Welcome, Admin Portal</p>
+    </ul>
+
+    <div class="user_profile d-flex me-3 mt-4">
+      <div class="user_content me-2 mt-2">
+        <div class="fs-6 text-white">S S S International School</div>
+      </div>
+      <div class="user_photo">
+        <img
+          routerLink="/admin/home"
+          class="rounded-circle"
+          src="../../../../assets/images/userprofile.png"
+          alt=""
+        />
+      </div>
+      <p style="color: red"><i (click)="logout()" class="ms-3 mt-2 fas fa-2x fa-sign-out-alt"></i></p>
+
+    </div>
+  </div>
+</nav>

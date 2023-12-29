@@ -1,0 +1,40 @@
+/* Custom styles for the table */
+.custom-table {
+  border: 1px solid #dee2e6;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.custom-table th,
+.custom-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.custom-table th {
+  background-color: #f8f9fa;
+}
+
+/* Styles for the student status */
+.status-pending {
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+}
+
+.status-active {
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+}
+
+.status-withdraw {
+  background-color: #ffc107; /* Warning color */
+  color: white;
+  border-radius: 5px;
+}
+
+.status-graduate {
+  background-color: #17a2b8; /* Info color */
+  color: white;
+  border-radius: 5px;
+}

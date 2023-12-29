@@ -1,0 +1,15 @@
+.inprocess {
+  color: white;
+  text-align: center;
+  background-color: red;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.completed {
+  color: white;
+  text-align: center;
+  background-color: green;
+  border-radius: 20px;
+  padding: 5px;
+}

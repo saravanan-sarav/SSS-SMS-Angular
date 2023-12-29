@@ -1,0 +1,51 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-light">
+  <img
+    routerLink="/teacher/home"
+    class="navbar-brand logo-image rounded-circle ms-4"
+    src="../../../../assets/images/SSS-SMS-bgremoved.png"
+    alt="Logo"
+  />
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div
+    class="collapse navbar-collapse d-flex justify-content-between"
+    id="navbarSupportedContent"
+  >
+    <div class="col-4">
+      <ul class="navbar-nav mr-auto ms-3">
+        <i class="fas fa-user fa-2x user-icon text-white icon_user_name"></i>
+        <p class="user_name fs-5">Welcome, {{ LoginUserName }}</p>
+      </ul>
+    </div>
+    <div class="col-5 mt-3 fs-4 text-start text-white">
+      <p>S S S International School</p>
+    </div>
+    <div class="col-2 text-left user_profile d-flex mt-4">
+      <div class="user_content me-2">
+        <div class="fs-6 text-white">{{ LoginUserName }}</div>
+        <div style="font-size: 10px" class="text-white">Teacher</div>
+      </div>
+      <div class="user_photo">
+        <img
+          routerLink="/teacher/home/profile"
+          class="rounded-circle"
+          src="../../../../assets/images/userprofile.png"
+          alt=""
+        />
+      </div>
+      <p style="color: red">
+        <i (click)="logout()" class="ms-3 mt-2 fas fa-2x fa-sign-out-alt"></i>
+      </p>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,22 @@
+.calendar-container {
+  text-align: center;
+}
+
+.fc-day-grid .fc-day {
+  height: 20px !important;
+  line-height: 20px !important;
+}
+
+.fc-day-present {
+  background-color: green;
+  color: white;
+}
+
+.fc-day-absent {
+  background-color: red;
+  color: white;
+}
+
+.button {
+  color: blue !important;
+}

@@ -1,0 +1,177 @@
+<app-student-navbar></app-student-navbar>
+<div class="row col-12">
+  <div class="col-1"><app-student-sidebar></app-student-sidebar></div>
+  <div class="container col-10 mt-4">
+    <div class="container-fluid">
+      <!-- Class Details -->
+      <div class="row details-section">
+        <div class="col-12">
+          <h3>Class Details</h3>
+        </div>
+
+        <!-- Class Information -->
+
+        <div class="col-md-12">
+          <div class="card teacher-card">
+            <div class="card-body">
+              <h4 class="card-header">Class Information</h4>
+              <div class="d-flex justify-content-evenly">
+                <div>
+                  <p><strong>Class Id:</strong> {{ classDetails.classId }}</p>
+                  <p>
+                    <strong>Standard:</strong> {{ classDetails.classStandard }}
+                  </p>
+                  <p>
+                    <strong>Class Incharge Name:</strong>
+                    {{ classDetails.classInChargeName }}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    <strong>Class Incharge Id:</strong>
+                    {{ classDetails.classInChargeId }}
+                  </p>
+                  <p>
+                    <strong>Class Incharge Phone Number:</strong> +91
+                    {{ classDetails.classInChargePhone }}
+                  </p>
+                  <p>
+                    <strong>Class Incharge Email:</strong>
+                    {{ classDetails.classInChargeEmail }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Teacher Details Cards -->
+      <div class="row">
+        <!-- Tamil Teacher Details Card -->
+        <div class="col-md-6">
+          <div class="card teacher-card">
+            <div class="card-body">
+              <h4 class="card-header">Tamil Teacher Details</h4>
+              <p>
+                <strong>Teacher Id:</strong> {{ classDetails.tamilTeacherId }}
+              </p>
+              <p>
+                <strong>Teacher Name:</strong>
+                {{ classDetails.tamilTeacherName }}
+              </p>
+              <p>
+                <strong>Teacher Phone Number:</strong> +91
+                {{ classDetails.tamilTeacherPhone }}
+              </p>
+              <p>
+                <strong>Teacher Email:</strong>
+                {{ classDetails.tamilTeacherEmail }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- English Teacher Details Card -->
+        <div class="col-md-6">
+          <div class="card teacher-card">
+            <div class="card-body">
+              <h4 class="card-header">English Teacher Details</h4>
+              <p>
+                <strong>Teacher Id:</strong> {{ classDetails.englishTeacherId }}
+              </p>
+              <p>
+                <strong>Teacher Name:</strong>
+                {{ classDetails.englishTeacherName }}
+              </p>
+              <p>
+                <strong>Teacher Phone Number:</strong> +91
+                {{ classDetails.englishTeacherPhone }}
+              </p>
+              <p>
+                <strong>Teacher Email:</strong>
+                {{ classDetails.englishTeacherEmail }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Maths and Science teacher Details -->
+      <div class="row">
+        <!-- Maths Teacher Details Card -->
+        <div class="col-md-6">
+          <div class="card teacher-card">
+            <div class="card-body">
+              <h4 class="card-header">Maths Teacher Details</h4>
+              <p>
+                <strong>Teacher Id:</strong> {{ classDetails.mathsTeacherId }}
+              </p>
+              <p>
+                <strong>Teacher Name:</strong>
+                {{ classDetails.mathsTeacherName }}
+              </p>
+              <p>
+                <strong>Teacher Phone Number:</strong> +1
+                {{ classDetails.mathsTeacherPhone }}
+              </p>
+              <p>
+                <strong>Teacher Email:</strong>
+                {{ classDetails.mathsTeacherEmail }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Science Teacher Details Card -->
+        <div class="col-md-6">
+          <div class="card teacher-card">
+            <div class="card-body">
+              <h4 class="card-header">Science Teacher Details</h4>
+              <p>
+                <strong>Teacher Id:</strong> {{ classDetails.scienceTeacherId }}
+              </p>
+              <p>
+                <strong>Teacher Name:</strong>
+                {{ classDetails.scienceTeacherName }}
+              </p>
+              <p>
+                <strong>Teacher Phone Number:</strong> +1
+                {{ classDetails.scienceTeacherPhone }}
+              </p>
+              <p>
+                <strong>Teacher Email:</strong>
+                {{ classDetails.scienceTeacherEmail }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Social Teacher Details -->
+      <div class="row">
+        <!-- Social Teacher Details Card -->
+        <div class="col-md-6">
+          <div class="card teacher-card">
+            <div class="card-body">
+              <h4 class="card-header">Social Teacher Details</h4>
+              <p>
+                <strong>Teacher Id:</strong> {{ classDetails.socialTeacherId }}
+              </p>
+              <p>
+                <strong>Teacher Name:</strong>
+                {{ classDetails.socialTeacherName }}
+              </p>
+              <p>
+                <strong>Teacher Phone Number:</strong> +1
+                {{ classDetails.socialTeacherPhone }}
+              </p>
+              <p>
+                <strong>Teacher Email:</strong>
+                {{ classDetails.socialTeacherEmail }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

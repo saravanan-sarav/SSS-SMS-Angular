@@ -1,0 +1,81 @@
+<div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <nav id="sidebar">
+        <ul class="list-unstyled components text-center">
+            <!-- Assignments -->
+          <li>
+            <a
+              routerLink="/teacher/home/assignment"
+              routerLinkActive="sidebarActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+              data-toggle="tooltip"
+              data-placement="right"
+              title="Assignments"
+            >
+            <i class="fas fa-book"></i>
+              <div>Assignments</div>
+            </a>
+          </li>
+          <!-- Classroom -->
+          <li>
+            <a
+              routerLink="/teacher/home/class"
+              routerLinkActive="sidebarActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+              data-toggle="tooltip"
+              data-placement="right"
+              title="Parents"
+            >
+            <i class="fas fa-chalkboard"></i>
+              <div>Classroom</div>
+            </a>
+          </li>
+          <!-- Attendance -->
+          <li>
+            <a
+              routerLink="/teacher/home/attendance"
+              routerLinkActive="sidebarActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+              data-toggle="tooltip"
+              data-placement="right"
+              title="Attendance"
+            >
+            <i class="fas fa-calendar-check"></i>
+              <div>Attendance</div>
+            </a>
+          </li>
+          <!-- Marks Entry -->
+          <li>
+            <a
+              routerLink="/teacher/home/grade"
+              routerLinkActive="sidebarActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+              data-toggle="tooltip"
+              data-placement="right"
+              title="Classroom"
+            >
+            <i class="fas fa-edit"></i>
+              <div>Marks</div>
+            </a>
+          </li>
+        <!-- Teacher Profile -->
+          <li>
+            <a
+              routerLink="/teacher/home/profile"
+              routerLinkActive="sidebarActive"
+              [routerLinkActiveOptions]="{ exact: true }"
+              data-toggle="tooltip"
+              data-placement="right"
+              title="Parents"
+            >
+              <i class="fas fa-users"></i>
+              <div>Profile</div>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Page Content -->
+    </div>
+  </div>

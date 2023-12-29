@@ -1,0 +1,27 @@
+.table-container {
+  margin: 20px;
+}
+
+.search-box {
+  margin-bottom: 20px;
+}
+
+.refresh-btn {
+  font-size: 16px;
+}
+
+.table-container table {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table th,
+.table td {
+  text-align: center;
+}
+
+.table-container table {
+  border: 2px solid;
+  border-image-slice: 1;
+}
+

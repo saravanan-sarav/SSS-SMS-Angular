@@ -1,0 +1,691 @@
+<app-admin-navbar></app-admin-navbar>
+<div class="row col-12 mt-5 pt-3">
+  <div class="col-1"><app-admin-sidebar></app-admin-sidebar></div>
+  <div class="col-11">
+    <form
+      class="container mt-5 mb-5"
+      #addTeacher="ngForm"
+      (ngSubmit)="addTeacherAdmin(addTeacher)"
+    >
+      <h4>Add Teacher</h4>
+      <input
+        type="hidden"
+        name="teacherUserId"
+        [(ngModel)]="teacherUserId"
+        ngModel
+      />
+      <input type="hidden" name="addressId" [(ngModel)]="addressId" ngModel />
+      <!-- Name  -->
+
+      <div class="d-flex justify-content-around mb-3">
+        <!-- FirstName -->
+        <div class="col-3">
+          <label class="mb-2" for="firstName">First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="firstName"
+            placeholder="First Name"
+            ngModel
+            required
+            minlength="3"
+            #modelFirstName="ngModel"
+            [ngClass]="
+              modelFirstName.dirty && modelFirstName.invalid ? 'is-invalid' : ''
+            "
+          />
+          <div style="height: 20px">
+            <div *ngIf="modelFirstName.invalid" style="color: red">
+              <div
+                *ngIf="
+                  modelFirstName.hasError('required') &&
+                  (modelFirstName.touched || modelFirstName.dirty)
+                "
+              >
+                First Name is required.
+              </div>
+              <div *ngIf="modelFirstName.hasError('minlength')">
+                First Name should contain 3 letters.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Last Name -->
+        <div class="col-3">
+          <label class="mb-2" for="lastName">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lastname"
+            placeholder="Last Name"
+            ngModel
+            required
+            minlength="3"
+            #modelLastName="ngModel"
+            [ngClass]="
+              modelLastName.dirty && modelLastName.invalid ? 'is-invalid' : ''
+            "
+          />
+          <div style="height: 20px">
+            <div *ngIf="modelLastName.invalid" style="color: red">
+              <div
+                *ngIf="
+                  modelLastName.hasError('required') &&
+                  (modelLastName.touched || modelLastName.dirty)
+                "
+              >
+                Last Name is required.
+              </div>
+              <div *ngIf="modelLastName.hasError('minlength')">
+                Last Name should contain 3 letters.
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Phone Number -->
+        <div class="col-3">
+          <label class="mb-2" for="PhoneNumber">Phone Number</label>
+          <input
+            type="number"
+            class="form-control"
+            name="phoneNumber"
+            placeholder="Phone Number"
+            ngModel
+            required
+            pattern="^[6-9]\d{9}$"
+            #modelPhoneNumber="ngModel"
+            [ngClass]="
+              modelPhoneNumber.dirty && modelPhoneNumber.invalid
+                ? 'is-invalid'
+                : ''
+            "
+          />
+          <div style="height: 20px">
+            <div *ngIf="modelPhoneNumber.invalid" style="color: red">
+              <div
+                *ngIf="
+                  modelPhoneNumber.hasError('required') &&
+                  (modelPhoneNumber.touched || modelPhoneNumber.dirty)
+                "
+              >
+                Phone Number is required.
+              </div>
+              <div *ngIf="modelPhoneNumber.hasError('pattern')">
+                Enter correct phone number.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-2"></div>
+      <div
+        style="
+          margin-bottom: 20px;
+          margin-top: 30px;
+          height: 2px;
+          background-color: rgb(220, 220, 220);
+        "
+      ></div>
+
+      <!-- Basic Information -->
+      <h5>Basic Informations</h5>
+      <div class="d-flex justify-content-around mb-3">
+        <!-- Email -->
+        <div class="col-3">
+          <label class="mb-2" for="email">Email Address</label>
+          <input
+            type="text"
+            class="form-control"
+            name="email"
+            placeholder="email"
+            ngModel
+            required
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            #modelEmail="ngModel"
+            [ngClass]="
+              modelEmail.dirty && modelEmail.invalid ? 'is-invalid' : ''
+            "
+          />
+          <div style="height: 20px">
+            <div *ngIf="modelEmail.invalid" style="color: red">
+              <div *ngIf="modelEmail.hasError('required') && modelEmail.dirty">
+                Email is required.
+              </div>
+              <div
+                *ngIf="
+                  modelEmail.hasError('required') &&
+                  (modelEmail.touched || modelEmail.dirty)
+                "
+              >
+                Please Enter the correct Email.
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Gender -->
+        <div class="col-3">
+          <label class="mb-2" for="gender">Gender</label>
+          <select
+            class="form-select"
+            name="gender"
+            title="SelectGender"
+            ngModel
+            required
+            #modelGender="ngModel"
+            [ngClass]="
+              modelGender.touched && modelGender.invalid ? 'is-invalid' : ''
+            "
+          >
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+          <div style="height: 20px">
+            <div *ngIf="modelGender.invalid" style="color: red">
+              <div
+                *ngIf="
+                  modelGender.hasError('required') &&
+                  (modelGender.touched || modelGender.dirty)
+                "
+              >
+                Gender is required.
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Date Of Birth & Age -->
+        <div class="col-3 d-flex">
+          <div>
+            <label class="mb-2" for="dateOfBirth">Date Of Birth</label>
+            <input
+              type="date"
+              class="form-control"
+              name="dateOfBirth"
+              placeholder="Enter Date Of Birth..."
+              ngModel
+              required
+              [max]="maxDate"
+              #modelDateOfBirth="ngModel"
+              [ngClass]="
+                modelDateOfBirth.dirty && modelDateOfBirth.invalid
+                  ? 'is-invalid'
+                  : ''
+              "
+            />
+
+            <div style="height: 20px">
+              <div *ngIf="modelDateOfBirth.invalid" style="color: red">
+                <div
+                  *ngIf="
+                    modelDateOfBirth.hasError('required') &&
+                    (modelDateOfBirth.touched || modelDateOfBirth.dirty)
+                  "
+                >
+                  DOB is required.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ms-4">
+            <label class="mb-2" for="dateOfBirth">Age</label>
+            <input
+              type="text"
+              class="form-control"
+              name="dateOfBirth"
+              placeholder="{{ calculateAge(modelDateOfBirth.value) }}"
+              disabled
+            />
+          </div>
+        </div>
+      </div>
+
+      <div
+        style="
+          margin-bottom: 20px;
+          margin-top: 30px;
+          height: 2px;
+          background-color: rgb(220, 220, 220);
+        "
+      ></div>
+
+      <!-- Address -->
+      <div class="mt-2">
+        <h5>Address</h5>
+        <div class="d-flex justify-content-around mb-3">
+          <!-- Door Number -->
+          <div class="col-3">
+            <label class="mb-2" for="doorNumber">Door Number</label>
+            <input
+              type="text"
+              class="form-control"
+              name="doorNum"
+              placeholder="Door Number"
+              ngModel
+              required
+              minlength="1"
+              #modelDoorNum="ngModel"
+              [ngClass]="
+                modelDoorNum.touched && modelDoorNum.invalid ? 'is-invalid' : ''
+              "
+            />
+            <div style="height: 20px">
+              <div *ngIf="modelDoorNum.invalid" style="color: red">
+                <div
+                  *ngIf="
+                    modelDoorNum.hasError('required') &&
+                    (modelDoorNum.touched || modelDoorNum.dirty)
+                  "
+                >
+                  Door Number is required.
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Street -->
+          <div class="col-3">
+            <label class="mb-2" for="street">Street</label>
+            <input
+              type="text"
+              class="form-control"
+              name="street"
+              placeholder="Street"
+              ngModel
+              required
+              minlength="3"
+              #modelStreet="ngModel"
+              [ngClass]="
+                modelStreet.touched && modelStreet.invalid ? 'is-invalid' : ''
+              "
+            />
+            <div style="height: 20px">
+              <div *ngIf="modelStreet.invalid" style="color: red">
+                <div
+                  *ngIf="
+                    modelStreet.hasError('required') &&
+                    (modelStreet.dirty || modelStreet.touched)
+                  "
+                >
+                  street Name is required.
+                </div>
+                <div *ngIf="modelStreet.hasError('minlength')">
+                  Street should contain 3 letters.
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- AddressLine -->
+          <div class="col-3">
+            <label class="mb-2" for="addrLine">Address Line</label>
+            <input
+              type="text"
+              class="form-control"
+              name="addrLine"
+              placeholder="Address Line"
+              ngModel
+              required
+              minlength="3"
+              #modelAddrLine="ngModel"
+              [ngClass]="
+                modelAddrLine.touched && modelAddrLine.invalid
+                  ? 'is-invalid'
+                  : ''
+              "
+            />
+            <div style="height: 20px">
+              <div *ngIf="modelAddrLine.invalid" style="color: red">
+                <div
+                  *ngIf="
+                    modelAddrLine.hasError('required') &&
+                    (modelAddrLine.dirty || modelAddrLine.touched)
+                  "
+                >
+                  address Line is required.
+                </div>
+                <div *ngIf="modelAddrLine.hasError('minlength')">
+                  address Line contain 3 letters.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-around mb-3">
+          <!-- City -->
+          <div class="col-3">
+            <label class="mb-2" for="city">City</label>
+            <input
+              type="text"
+              class="form-control"
+              name="city"
+              placeholder="City"
+              ngModel
+              required
+              minlength="3"
+              #modelCity="ngModel"
+              [ngClass]="
+                modelCity.dirty && modelCity.invalid ? 'is-invalid' : ''
+              "
+            />
+            <div style="height: 20px">
+              <div *ngIf="modelCity.invalid" style="color: red">
+                <div
+                  *ngIf="
+                    modelCity.hasError('required') &&
+                    (modelCity.dirty || modelCity.touched)
+                  "
+                >
+                  City is required.
+                </div>
+                <div *ngIf="modelCity.hasError('minlength')">
+                  City Line contain 3 letters.
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- state -->
+          <div class="col-3">
+            <label class="mb-2" for="state">State</label>
+            <input
+              type="text"
+              class="form-control"
+              name="state"
+              placeholder="State"
+              ngModel
+              required
+              minlength="3"
+              #modelState="ngModel"
+              [ngClass]="
+                modelState.touched && modelState.invalid ? 'is-invalid' : ''
+              "
+            />
+            <div style="height: 20px">
+              <div *ngIf="modelState.invalid" style="color: red">
+                <div
+                  *ngIf="
+                    modelState.hasError('required') &&
+                    (modelState.dirty || modelState.touched)
+                  "
+                >
+                  state is required.
+                </div>
+                <div *ngIf="modelState.hasError('minlength')">
+                  State contain 3 letters.
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- pincode -->
+          <div class="col-3">
+            <label class="mb-2" for="pincode">Pincode</label>
+            <input
+              type="number"
+              class="form-control"
+              name="pincode"
+              placeholder="Pincode"
+              ngModel
+              required
+              pattern="^[1-9][0-9]{5}$"
+              #modelPincode="ngModel"
+              [ngClass]="
+                modelPincode.touched && modelPincode.invalid ? 'is-invalid' : ''
+              "
+            />
+            <div style="height: 20px">
+              <div *ngIf="modelPincode.invalid" style="color: red">
+                <div
+                  *ngIf="
+                    modelPincode.hasError('required') &&
+                    (modelPincode.dirty || modelPincode.touched)
+                  "
+                >
+                  Pincode is required.
+                </div>
+                <div *ngIf="modelPincode.hasError('pattern')">
+                  PinCode is incorrect.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        style="
+          margin-bottom: 20px;
+          margin-top: 30px;
+          height: 2px;
+          background-color: rgb(220, 220, 220);
+        "
+      ></div>
+
+      <!-- Subjects -->
+      <div class="mt-2">
+        <h5>Subject</h5>
+        <div class="ms-5 mb-3">
+          <div class="col-3">
+            <label class="mb-2" for="subject">Subject</label>
+            <select class="form-select" name="subjectId" ngModel>
+              <option value="">Select Subject</option>
+              <option
+                *ngFor="let subject of subjects"
+                [ngValue]="subject.subjectId"
+              >
+                {{ subject.subject }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div
+        style="
+          margin-bottom: 20px;
+          margin-top: 30px;
+          height: 2px;
+          background-color: rgb(220, 220, 220);
+        "
+      ></div>
+      <h5>User Credentials</h5>
+      <div class="d-flex justify-content-around mb-3">
+        <div class="col-3">
+          <label class="mb-2" for="parentUserName">Teacher Username</label>
+          <input
+            type="text"
+            class="form-control"
+            name="teacherUsername"
+            placeholder="Username"
+            ngModel
+            required
+            minlength="3"
+            #modelTeacherUsername="ngModel"
+            [ngClass]="
+              modelTeacherUsername.touched && modelTeacherUsername.invalid
+                ? 'is-invalid'
+                : ''
+            "
+          />
+          <div style="height: 20px">
+            <div *ngIf="modelTeacherUsername.invalid" style="color: red">
+              <div
+                *ngIf="
+                  modelTeacherUsername.hasError('required') &&
+                  (modelTeacherUsername.dirty || modelTeacherUsername.touched)
+                "
+              >
+                state is required.
+              </div>
+              <div *ngIf="modelTeacherUsername.hasError('minlength')">
+                minimum 3 letter required.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <label class="mb-2" for="teacherPassword">Teacher Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="teacherPassword"
+            placeholder="Password"
+            ngModel
+            required
+            minlength="4"
+            #modelTeacherPassword="ngModel"
+            [ngClass]="
+              modelTeacherPassword.touched && modelTeacherPassword.invalid
+                ? 'is-invalid'
+                : ''
+            "
+          />
+          <div
+            *ngIf="
+              modelTeacherPassword.invalid &&
+              (modelTeacherPassword.dirty || modelTeacherPassword.touched)
+            "
+            style="color: red"
+          >
+            <div *ngIf="modelTeacherPassword.hasError('required')">
+              Password is required.
+            </div>
+            <div *ngIf="modelTeacherPassword.hasError('minlength')">
+              Password must contain at least 8 characters.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-3">
+          <label class="mb-2" for="parentConfrimPassword"
+            >Confirm Password</label
+          >
+          <div class="input-group">
+            <input
+              type="{{ hide ? 'password' : 'text' }}"
+              class="form-control"
+              id="teacherConfrimPassword"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              ngModel
+              required
+              minlength="4"
+              #modelTeacherConfirmPassword="ngModel"
+              [ngClass]="
+                modelTeacherConfirmPassword.touched &&
+                modelTeacherConfirmPassword.invalid
+                  ? 'is-invalid'
+                  : ''
+              "
+            />
+            <div
+              type="button"
+              style="background-color: var(--primary-500); border-radius: 3px"
+              (click)="togglePassword()"
+            >
+              <i
+                style="
+                  margin-left: 3px;
+                  padding-left: 15px;
+                  padding-top: 10px;
+                  margin-right: 15px;
+                  width: 40px;
+                  color: aliceblue;
+                "
+                class="{{ hide ? 'fa-eye-slash fa' : 'fa-eye fa' }}"
+              ></i>
+            </div>
+          </div>
+          <div
+            *ngIf="
+              modelTeacherConfirmPassword.invalid &&
+              (modelTeacherConfirmPassword.dirty ||
+                modelTeacherConfirmPassword.touched)
+            "
+            style="color: red"
+          >
+            <div *ngIf="modelTeacherConfirmPassword.hasError('required')">
+              Password is required.
+            </div>
+            <div
+              *ngIf="
+                modelTeacherConfirmPassword.value !== modelTeacherPassword.value
+              "
+            >
+              Confirm Password mismatch
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ms-2 mb-3 form-check">
+        <input type="checkbox" class="form-check-input" name="acceptNote" />
+        <label class="form-check-label" for="acceptNote"
+          >Checked All Fields</label
+        ><br />
+      </div>
+
+      <button
+        type="submit"
+        id="addTeacher"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#successfullyRegister"
+        [disabled]="addTeacher.invalid"
+      >
+        Submit
+      </button>
+      <div
+        class="modal fade"
+        id="successfullyRegister"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Teacher Added Successfully...
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div>
+                <p>
+                  TeacherUserId :
+                  <span style="font-weight: 900">
+                    {{ teacherCreatedNotification.teacherUserId }}</span
+                  >
+                </p>
+                <p>
+                  Teacher Name:
+                  <span style="font-weight: 900">
+                    {{ teacherCreatedNotification.teacherName }}</span
+                  >
+                </p>
+                <p>
+                  UserName :
+                  <span style="font-weight: 900">
+                    {{ teacherCreatedNotification.teacherUsername }}</span
+                  >
+                </p>
+                <p>
+                  Email:<span style="font-weight: 900">
+                    {{ teacherCreatedNotification.email }}</span
+                  >
+                </p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Email</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

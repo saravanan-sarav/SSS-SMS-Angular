@@ -1,0 +1,190 @@
+<app-admin-navbar></app-admin-navbar>
+<div class="row col-12 mt-5">
+  <div class="col-1"><app-admin-sidebar></app-admin-sidebar></div>
+  <div class="container col-10">
+    <form
+      class="col-5"
+      #addClassRoom="ngForm"
+      (ngSubmit)="createClass(addClassRoom)"
+    >
+      <!-- Standard Field -->
+      <h3>Classroom</h3>
+      <input
+        type="hidden"
+        name="classRoomId"
+        [(ngModel)]="createClassroom.classRoomId"
+        ngModel
+      />
+      <div class="mb-3 row">
+        <label for="standard" class="col-sm-2 col-form-label" required
+          >Standard</label
+        >
+        <div class="col-sm-4">
+          <select
+            class="form-select col-12"
+            id="standard"
+            name="standardId"
+            ngModel
+            required
+          >
+            <option value="">Select Standard</option>
+            <option
+              *ngFor="let std of classStandard"
+              [ngValue]="std.standardId"
+            >
+              {{ std.standard }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Class Teacher Field Group -->
+      <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Class Teacher</label>
+        <div class="col-sm-10">
+          <!-- Add your class teacher select options here -->
+          <select
+            class="form-select"
+            name="teacherUserId"
+            ngModel
+            (change)="assignToSubject()"
+            [(ngModel)]="createClassroom.teacherUserId"
+            required
+            aria-placeholder="Select Class Teacher"
+          >
+            <option value="0">Select Class Teacher</option>
+            <option
+              *ngFor="let teacher of classTeacher"
+              [ngValue]="teacher.teacherUserId"
+            >
+              {{ teacher.teacherName }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Tamil Teacher Field Group -->
+      <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Tamil Teacher</label>
+        <div class="col-sm-10">
+          <select
+            class="form-select"
+            name="tamilTeacherUserId"
+            [(ngModel)]="createClassroom.tamilTeacherUserId"
+            ngModel
+            required
+          >
+            <option value="0">Select Tamil Teacher</option>
+            <option
+              *ngFor="let teacher of tamilTeacher"
+              [ngValue]="teacher.teacherUserId"
+            >
+              {{ teacher.teacherName }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <!-- English Teacher Field Group -->
+      <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">English Teacher</label>
+        <div class="col-sm-10">
+          <select
+            class="form-select"
+            name="englishTeacherUserId"
+            [(ngModel)]="createClassroom.englishTeacherUserId"
+            ngModel
+            required
+          >
+            <option value="0">Select English Teacher</option>
+            <option
+              *ngFor="let teacher of englishTeacher"
+              [ngValue]="teacher.teacherUserId"
+            >
+              {{ teacher.teacherName }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Maths -->
+      <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Maths Teacher</label>
+        <div class="col-sm-10">
+          <select
+            class="form-select"
+            name="mathsTeacherUserId"
+            [(ngModel)]="createClassroom.mathsTeacherUserId"
+            ngModel
+            required
+          >
+            <option value="0">Select Maths Teacher</option>
+            <option
+              *ngFor="let teacher of mathsTeacher"
+              [ngValue]="teacher.teacherUserId"
+            >
+              {{ teacher.teacherName }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Science -->
+      <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Science Teacher</label>
+        <div class="col-sm-10">
+          <select
+            class="form-select"
+            name="scienceTeacherUserId"
+            [(ngModel)]="createClassroom.scienceTeacherUserId"
+            ngModel
+            required
+          >
+            <option value="0">Select Science Teacher</option>
+            <option
+              *ngFor="let teacher of scienceTeacher"
+              [ngValue]="teacher.teacherUserId"
+            >
+              {{ teacher.teacherName }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Social -->
+      <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Social Teacher</label>
+        <div class="col-sm-10">
+          <select
+            class="form-select"
+            name="socialTeacherUserId"
+            [(ngModel)]="createClassroom.socialTeacherUserId"
+            ngModel
+            required
+          >
+            <option value="0">Select Social Teacher</option>
+            <option
+              *ngFor="let teacher of socialTeacher"
+              [ngValue]="teacher.teacherUserId"
+            >
+              {{ teacher.teacherName }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <!-- Add similar blocks for other subject teachers -->
+
+      <!-- Submit Button -->
+      <div class="mb-3 row">
+        <div class="col-sm-10 offset-sm-2">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="addClassRoom.invalid"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

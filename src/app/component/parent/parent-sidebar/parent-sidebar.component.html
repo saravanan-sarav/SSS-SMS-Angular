@@ -1,0 +1,49 @@
+<div class="container-fluid col-1">
+  <div class="row">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+      <ul class="list-unstyled components text-center">
+        <li>
+          <a
+            routerLink="/parent/home/studentdetail"
+            routerLinkActive="sidebarActive"
+            [routerLinkActiveOptions]="{ exact: true }"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Students"
+          >
+            <i class="fas fa-user-graduate"></i>
+            <div>Students</div>
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/parent/home/studentattendance"
+            routerLinkActive="sidebarActive"
+            [routerLinkActiveOptions]="{ exact: true }"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Attendance"
+          >
+            <i class="fas fa-clipboard-check"></i>
+            <div>Attendance</div>
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/parent/home/profile"
+            routerLinkActive="sidebarActive"
+            [routerLinkActiveOptions]="{ exact: true }"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Parents"
+          >
+            <i class="fas fa-users"></i>
+            <div>My Profile</div>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- Page Content -->
+  </div>
+</div>
