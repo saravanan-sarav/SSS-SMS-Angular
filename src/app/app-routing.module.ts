@@ -31,6 +31,7 @@ import { TeacherAddAssignmentComponent } from './component/teacher/teacher-add-a
 import { authGuard } from './guard/auth.guard';
 import { StudentParentDetailsComponent } from './component/student/student-parent-details/student-parent-details.component';
 import { StudentClassRoomComponent } from './component/student/student-class-room/student-class-room.component';
+import { TeacherLeaveTrackerComponent } from './component/teacher/teacher-leave-tracker/teacher-leave-tracker.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -115,6 +116,12 @@ const routes: Routes = [
   {
     path: 'teacher/add-assignment',
     component: TeacherAddAssignmentComponent,
+    canActivate: [authGuard],
+  },
+
+  {
+    path: 'teacher/home/leavetracker',
+    component: TeacherLeaveTrackerComponent,
     canActivate: [authGuard],
   },
 

@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
@@ -9,7 +9,6 @@ import { RegisterComponent } from './component/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
 
 import player from 'lottie-web';
 import { LottieModule } from 'ngx-lottie';
@@ -53,6 +52,7 @@ import { StudentParentDetailsComponent } from './component/student/student-paren
 import { StudentClassRoomComponent } from './component/student/student-class-room/student-class-room.component';
 import { RegisterationNavbarComponent } from './component/parent/registeration-navbar/registeration-navbar.component';
 import { ToastrModule } from 'ngx-toastr';
+import { TeacherLeaveTrackerComponent } from './component/teacher/teacher-leave-tracker/teacher-leave-tracker.component';
 
 export function playerFactory() {
   return player;
@@ -105,6 +105,7 @@ export function pluginsCalender() {
     StudentParentDetailsComponent,
     StudentClassRoomComponent,
     RegisterationNavbarComponent,
+    TeacherLeaveTrackerComponent,
   ],
   imports: [
     BrowserModule,

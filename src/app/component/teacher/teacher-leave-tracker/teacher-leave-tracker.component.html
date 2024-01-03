@@ -1,0 +1,147 @@
+<app-teacher-navbar></app-teacher-navbar>
+<div class="row col-12 mt-5 ps-5">
+  <div class="col-1"><app-teacher-sidebar></app-teacher-sidebar></div>
+  <div class="col-11">
+    <div class="container">
+      <div class="row mb-3">
+        <div class="col-3">
+          <div class="form-group">
+            <label for="statusDropdown">Status:</label>
+            <select class="form-control" id="statusDropdown">
+              <option value="approve">Approve</option>
+              <option value="reject">Reject</option>
+              <option value="pending">Pending</option>
+            </select>
+          </div>
+        </div>
+        <div class="row col-9 justify-content-end">
+          <div class="col-2">
+            <label class="mr-sm-2" for="searchYear">Year:</label>
+            <select class="form-control mb-2 mr-sm-2" id="searchYear">
+              <option value="2023">2023</option>
+              <option value="2022">2022</option>
+            </select>
+          </div>
+
+          <div class="col-2">
+            <label class="mr-sm-2" for="searchMonth">Month:</label>
+            <select class="form-control mb-2 mr-sm-2" id="searchMonth">
+              <option value="1">January</option>
+              <option value="2">February</option>
+            </select>
+          </div>
+
+          <button type="submit" class="mt-4 btn btn-primary mb-2 col-2">
+            Search
+          </button>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>S.no</th>
+              <th>FirstName</th>
+              <th>LastName</th>
+              <th>From</th>
+              <th>To</th>
+              <th>From Time</th>
+              <th>To Time</th>
+              <th>Comments</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>John</td>
+              <td>Doe</td>
+              <td>2023-01-01</td>
+              <td>2023-01-05</td>
+              <td>08:00 AM</td>
+              <td>05:00 PM</td>
+              <td>Vacation</td>
+              <td>
+                <select class="form-control">
+                  <option value="approve">Approve</option>
+                  <option value="reject">Reject</option>
+                  <option value="pending" selected>Pending</option>
+                </select>
+              </td>
+              <td>
+                <button class="btn btn-danger">Action</button>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Jane</td>
+              <td>Smith</td>
+              <td>2023-02-10</td>
+              <td>2023-02-15</td>
+              <td>09:00 AM</td>
+              <td>04:00 PM</td>
+              <td>Sick Leave</td>
+              <td>
+                <select class="form-control">
+                  <option value="approve" selected>Approve</option>
+                  <option value="reject">Reject</option>
+                  <option value="pending">Pending</option>
+                </select>
+              </td>
+              <td>
+                <button class="btn btn-danger">Action</button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Alice</td>
+              <td>Johnson</td>
+              <td>2023-03-20</td>
+              <td>2023-03-25</td>
+              <td>10:30 AM</td>
+              <td>06:30 PM</td>
+              <td>Conference</td>
+              <td>
+                <select class="form-control">
+                  <option value="approve">Approve</option>
+                  <option value="reject">Reject</option>
+                  <option value="pending">Pending</option>
+                </select>
+              </td>
+              <td>
+                <button class="btn btn-danger">Action</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>Total Count: <span id="totalCount">0</span></p>
+        </div>
+        <div class="col-md-6">
+          <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-end">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
+                  >Previous</a
+                >
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
