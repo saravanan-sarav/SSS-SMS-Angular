@@ -85,4 +85,10 @@ export class ApiAdminService {
       `${urlEndpoint.adminUrl}/today/present`
     );
   }
+
+  getStudentReport(userId: number): Observable<AppResponse> {
+    return this.httpClient.get<AppResponse>(
+      `${urlEndpoint.adminUrl}/report/${userId}`
+    );
+  }
 }

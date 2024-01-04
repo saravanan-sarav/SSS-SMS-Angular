@@ -26,6 +26,8 @@
     "@fullcalendar/timegrid": "^6.1.9",
     "angular-notifier": "^14.0.0",
     "g": "^2.0.1",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.1",
     "lottie-web": "^5.12.2",
     "ng-angular-popup": "^0.5.2",
     "ngx-lottie": "^10.0.0",

@@ -78,6 +78,7 @@
               <th>Student Status</th>
               <th style="width: 110px">Date of Join</th>
               <th>Confirm Status</th>
+              <th>Report</th>
             </tr>
           </thead>
           <tbody>
@@ -138,6 +139,15 @@
                 >
                   Change
                 </button>
+              </td>
+              <td
+                (click)="downloadReport(student.studentUserId)"
+                class="text-center pt-3"
+              >
+                <i
+                  style="color: var(--primary-900)"
+                  class="fas fa-download"
+                ></i>
               </td>
             </tr>
           </tbody>

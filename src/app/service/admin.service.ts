@@ -63,7 +63,11 @@ export class AdminService {
     return this.apiAdminService.getStudentListForAttendance(classId);
   }
 
-  getTodayAttendanceCount():Observable<AppResponse>{
+  getTodayAttendanceCount(): Observable<AppResponse> {
     return this.apiAdminService.getTodayAttendanceCount();
+  }
+
+  getStudentReport(userId: number): Observable<AppResponse> {
+    return this.apiAdminService.getStudentReport(userId);
   }
 }

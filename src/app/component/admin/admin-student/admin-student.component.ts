@@ -3,9 +3,13 @@ import { AnimationOptions } from 'ngx-lottie';
 import { CLassList } from 'src/app/model/class-list';
 import { AdminStudentApprove } from 'src/app/model/request/admin-student-approve';
 import { AdminStudentResponse } from 'src/app/model/response/admin-student-response';
+import { StudentDetailReport } from 'src/app/model/student-detail-report';
 import { StudentStatus } from 'src/app/model/student-status';
 import { AdminService } from 'src/app/service/admin.service';
 import { CommonService } from 'src/app/service/common.service';
+import * as jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import { ReportGeneratorService } from 'src/app/service/report-generator.service';
 
 @Component({
   selector: 'app-admin-student',
@@ -13,8 +17,36 @@ import { CommonService } from 'src/app/service/common.service';
   styleUrls: ['./admin-student.component.css'],
 })
 export class AdminStudentComponent implements OnInit {
+  pdf: any;
   studentDetails: AdminStudentResponse[] = [];
   studentUpdateList: AdminStudentResponse[] = [];
+
+  studentDetailReport: StudentDetailReport = {
+    name: '',
+    className: '',
+    classId: 0,
+    status: '',
+    joinedDate: '',
+    studentId: 0,
+    firstName: '',
+    lastName: '',
+    gender: '',
+    motherName: '',
+    fatherName: '',
+    motherPhoneNumber: '',
+    fatherPhoneNumber: '',
+    motherOccupation: '',
+    fatherOccupation: '',
+    doorNumber: '',
+    street: '',
+    addressLine: '',
+    city: '',
+    state: '',
+    pinCode: '',
+    assignmentsAssigned: 0,
+    assignmentsCompleted: 0,
+    assignmentsPassed: 0,
+  };
 
   listSize: number[] = [1, 2, 10, 20, 30, 50];
 
@@ -29,7 +61,8 @@ export class AdminStudentComponent implements OnInit {
   visiblePage: (number | '...')[] = [];
   constructor(
     private adminService: AdminService,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private reportGeneratorService: ReportGeneratorService
   ) {}
 
   options: AnimationOptions = {
@@ -175,5 +208,9 @@ export class AdminStudentComponent implements OnInit {
           .toLowerCase()
           .includes(event.target.value.toLowerCase())
     );
+  }
+
+  downloadReport(userId: number): void {
+    this.reportGeneratorService.getStudentDetailReport(userId);
   }
 }
