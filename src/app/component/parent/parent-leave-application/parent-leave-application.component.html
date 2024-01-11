@@ -2,8 +2,12 @@
 <div class="row col-12">
   <div class="col-1"><app-parent-sidebar></app-parent-sidebar></div>
   <div class="ms-5 mt-2 col-10 mb-4 row">
-    <div class="mt-4 col-6">
-      <h2 class="text-start mb-4">Leave Application</h2>
+    <div class="mt-4 col-5">
+      <div class="text-start mb-4 d-flex justify-content-between">
+        <h2>Leave Application</h2>
+        <a class="btn btn-primary mb-2">Leave History</a>
+      </div>
+
       <div class="form-check">
         <input
           class="form-check-input"
@@ -165,12 +169,12 @@
             "
           >
             <option value="" disabled selected>Select a reason</option>
-            <option value="sick">Sick</option>
-            <option value="Family emergency">Family emergency</option>
-            <option value="Special event">Special event</option>
-            <option value="Medical appointment">Medical appointment</option>
-            <option value="Personal reasons">Personal reasons</option>
-            <option value="Other">Other</option>
+            <option
+              *ngFor="let leaveReason of leaveReasonList"
+              [value]="leaveReason.id"
+            >
+              {{ leaveReason.reason }}
+            </option>
           </select>
           <div style="height: 20px">
             <div *ngIf="modelReason.invalid" style="color: red">
@@ -234,8 +238,86 @@
         </button>
       </form>
     </div>
-    <div class="col-6 text-center">
-      <ng-lottie [options]="options"></ng-lottie>
+    <div class="col-1"></div>
+    <div class="col-6 mt-4">
+      <h3 class="mb-3">Recent Application Status:</h3>
+      <div
+        class="rounded"
+        style="
+          background-color: white;
+          min-height: 50%;
+          min-width: 100%;
+          border: 2px solid var(--primary-700);
+        "
+      >
+        <div style="margin: 3%">
+          <h4
+            style="
+              background-color: var(--primary-900);
+              border-radius: 5px;
+              padding: 5px;
+              color: white;
+            "
+          >
+            Type of Application : {{ recentLeaveApplication.leaveType }}
+          </h4>
+          <div class="d-flex justify-content-around fs-5 mt-3">
+            <p
+              style="
+                background-color: gray;
+                border-radius: 5px;
+                padding: 5px;
+                color: white;
+              "
+            >
+              Date of Apply : {{ dateParts[2] }}-{{ dateParts[1] }}-{{
+                dateParts[0]
+              }}
+            </p>
+            <p
+              style="
+                background-color: gray;
+                border-radius: 5px;
+                padding: 5px;
+                color: white;
+              "
+            >
+              Applied Time : {{ dateParts[3] }}:{{ dateParts[4] }}:{{
+                dateParts[5]
+              }}
+              {{ dateParts[6] }}
+            </p>
+          </div>
+          <p *ngIf="recentLeaveApplication.leaveType == 'Permission'">
+            Date: {{ recentLeaveApplication.fromDate }}
+          </p>
+          <p *ngIf="recentLeaveApplication.leaveType != 'Permission'">
+            From Date: {{ recentLeaveApplication.fromDate }}
+          </p>
+          <p *ngIf="recentLeaveApplication.toDate != null">
+            To Date: {{ recentLeaveApplication.toDate }}
+          </p>
+          <p *ngIf="recentLeaveApplication.toDate != null">
+            Total Days : {{ calculateDays() }} Day(s)
+          </p>
+          <p *ngIf="recentLeaveApplication.fromTime != null">
+            From Time:
+            {{ fromTime[0] }}:{{ fromTime[1] }} {{ fromTime[2] }}
+          </p>
+          <p *ngIf="recentLeaveApplication.toTime != null">
+            To Time: {{ toTime[0] }}:{{ toTime[1] }} {{ toTime[2] }}
+          </p>
+          <p>Reason : {{ recentLeaveApplication.leaveReason }}</p>
+          <p>Comments : {{ recentLeaveApplication.comments }}</p>
+          <p
+            class="pending fs-5"
+            [ngClass]="leaveStatus() ? 'approved' : 'rejected'"
+          >
+            Status:{{ recentLeaveApplication.leaveStatus }}
+          </p>
+        </div>
+      </div>
+      <!-- <ng-lottie [options]="options"></ng-lottie> -->
     </div>
   </div>
 </div>

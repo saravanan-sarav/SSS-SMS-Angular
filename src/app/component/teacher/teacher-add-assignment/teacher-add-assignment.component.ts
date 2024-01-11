@@ -82,32 +82,37 @@ export class TeacherAddAssignmentComponent implements OnInit {
   addAssignmentTeacher(addAssigment: NgForm): void {
     console.log(addAssigment.value);
     let assTypeId: AssignmentType | undefined = this.assignmentType.find(
-      (assignmentType) => {
-        assignmentType.assignmentType === addAssigment.value.assignmentType;
-        return assignmentType;
-      }
+      (assignmentType) =>
+        assignmentType.assignmentType === addAssigment.value.assignmentType
     );
-    let assignmentRequest: AssignmentRequest = {
-      assignmentId: addAssigment.value.assignmentId,
-      assignmentTypeId: assTypeId?.assignmentId!,
-      teacherUserId: this.storageService.getLoggedInUser().id,
-      classId: addAssigment.value.classId,
-      subjectId: addAssigment.value.subjectId,
-      deadline: addAssigment.value.deadline,
-      totalGrade: addAssigment.value.totalGrade,
-      minScore: addAssigment.value.minScore,
-      comments: addAssigment.value.comments,
-    };
-    console.log(assignmentRequest);
-    this.commonService.postAssignment(assignmentRequest).subscribe({
-      next: (response: any) => {
-        console.log(response);
-        this.router.navigate(['/teacher/home/assignment'], {
-          replaceUrl: true,
-        });
-        this.toasterService.success('Assignment Added Successfully');
-      },
-    });
+    if (assTypeId?.assignmentId != undefined) {
+      let assignmentRequest: AssignmentRequest = {
+        assignmentId: addAssigment.value.assignmentId,
+        assignmentTypeId: assTypeId?.assignmentId!,
+        teacherUserId: this.storageService.getLoggedInUser().id,
+        classId: addAssigment.value.classId,
+        subjectId: addAssigment.value.subjectId,
+        deadline: addAssigment.value.deadline,
+        totalGrade: addAssigment.value.totalGrade,
+        minScore: addAssigment.value.minScore,
+        comments: addAssigment.value.comments,
+      };
+      console.log(assignmentRequest);
+      this.commonService.postAssignment(assignmentRequest).subscribe({
+        next: (response: any) => {
+          console.log(response);
+          this.router.navigate(['/teacher/home/assignment'], {
+            replaceUrl: true,
+          });
+          this.toasterService.success('Assignment Added Successfully');
+        },
+      });
+    } else {
+      this.toasterService.warning(
+        'Please select the AssignmentType!',
+        'Add Assignment'
+      );
+    }
   }
 
   filterItems(): void {

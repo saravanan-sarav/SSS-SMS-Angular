@@ -53,4 +53,16 @@ export class ApiStudentService {
       permissionApplication
     );
   }
+
+  getLeaveReason(): Observable<AppResponse> {
+    return this.httpClient.get<AppResponse>(
+      `${urlEndpoint.baseUrl}/leave/reasons`
+    );
+  }
+
+  getRecentApplication(studentUserId: number): Observable<AppResponse> {
+    return this.httpClient.get<AppResponse>(
+      `${urlEndpoint.baseUrl}/leave/recent/${studentUserId}`
+    );
+  }
 }

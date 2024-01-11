@@ -8,4 +8,5 @@ export interface LeaveApplication {
   toTime?: string;
   parentUserId: number;
   studentUserId: number;
+  leaveReasonId: number;
 }

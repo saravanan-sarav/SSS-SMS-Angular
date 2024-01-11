@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AppModule } from '../app.module';
 import { AppResponse } from '../model/appResponse';
 import { ApiStudentService } from './api/api-student.service';
 import { StorageService } from './storage.service';
@@ -38,7 +37,18 @@ export class ParentService {
     );
   }
 
-  applyPermission(permissionApplication:LeaveApplication):Observable<AppResponse>{
+  applyPermission(
+    permissionApplication: LeaveApplication
+  ): Observable<AppResponse> {
     return this.apiStudentService.applyPermission(permissionApplication);
+  }
+
+  getLeaveReason(): Observable<AppResponse> {
+    return this.apiStudentService.getLeaveReason();
+  }
+  getRecentApplication(): Observable<AppResponse> {
+    return this.apiStudentService.getRecentApplication(
+      this.storageService.getLoggedInUser().studentId!
+    );
   }
 }

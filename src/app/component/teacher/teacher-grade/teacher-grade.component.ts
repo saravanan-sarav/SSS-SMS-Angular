@@ -6,6 +6,8 @@ import { TeacherAssignmentResponse } from 'src/app/model/response/teacher-assign
 import { TeacherStudentListForAssignment } from 'src/app/model/response/teacher-student-list-for-assignment';
 import { TeacherService } from 'src/app/service/teacher.service';
 import { NotifierService } from 'angular-notifier';
+import { AnimationOptions } from 'ngx-lottie';
+import { ToasterServiceService } from 'src/app/service/toaster-service.service';
 
 @Component({
   selector: 'app-teacher-grade',
@@ -13,9 +15,12 @@ import { NotifierService } from 'angular-notifier';
   styleUrls: ['./teacher-grade.component.css'],
 })
 export class TeacherGradeComponent {
+  options: AnimationOptions = {
+    path: '/assets/auth.json',
+  };
   assignmentDetails: TeacherAssignmentResponse[] = [];
   assignmentId: number = 0;
-
+  assignmentSelected: boolean = false;
   studentDetails: TeacherStudentListForAssignment[] = [];
 
   assignmentDeatail: TeacherAssignmentLoaderResponse = {
@@ -29,7 +34,10 @@ export class TeacherGradeComponent {
     minScore: 0,
   };
 
-  constructor(private teacherService: TeacherService) {}
+  constructor(
+    private teacherService: TeacherService,
+    private toasterService: ToasterServiceService
+  ) {}
 
   ngOnInit(): void {
     this.teacherService.getAllAssignments().subscribe({
@@ -47,7 +55,7 @@ export class TeacherGradeComponent {
       next: (response: any) => {
         this.assignmentDeatail = response.data;
         this.assignmentId = selectAssignment.value;
-
+        this.assignmentSelected = true;
         this.getstudentDetailsForAssignment();
       },
     });
@@ -77,13 +85,16 @@ export class TeacherGradeComponent {
       markObtained: obtainedMark,
       comments: comment,
     };
-    console.log(assignmentEntry);
 
     this.teacherService.entryMarkForStudent(assignmentEntry).subscribe({
       next: (response: any) => {
-        console.log(response);
         this.getstudentDetailsForAssignment();
       },
+      complete: () => {},
     });
+    this.toasterService.success(
+      'Mark Entered',
+      `${this.assignmentDeatail.assignmentName}`
+    );
   }
 }

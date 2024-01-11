@@ -39,7 +39,7 @@
         </div>
       </div>
     </div>
-    <div class="row mt-4">
+    <div *ngIf="assignmentSelected" class="row mt-4">
       <div class="col-md-6">
         <ul class="list-group">
           <li class="list-group-item">
@@ -110,7 +110,7 @@
       </div>
     </div>
 
-    <div class="mt-4">
+    <div *ngIf="assignmentSelected" class="mt-4">
       <table class="table">
         <thead>
           <tr>
@@ -183,8 +183,15 @@
       </table>
     </div>
 
-    <div class="d-flex justify-content-between mt-3">
-      <p>Page 1 of 1</p>
+    <div
+      *ngIf="!assignmentSelected"
+      style="height: 400px; width: 400px; margin-left: 35%"
+    >
+      <ng-lottie [options]="options"></ng-lottie>
+      <h4 class="text-center">Select Assignment...</h4>
+    </div>
+
+    <!-- <div class="d-flex justify-content-between mt-3">
       <nav aria-label="Page navigation">
         <ul class="pagination">
           <li class="page-item disabled">
@@ -200,6 +207,6 @@
           </li>
         </ul>
       </nav>
-    </div>
+    </div> -->
   </div>
 </div>

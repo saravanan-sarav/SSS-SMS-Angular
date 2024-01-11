@@ -38,14 +38,14 @@ export class AdminAssignmentComponent {
     const inputMonth = parseInt(inputDateArray[1], 10);
     const inputDay = parseInt(inputDateArray[0], 10);
 
-    const inputDate = new Date(inputYear, inputMonth-1, inputDay);
+    const inputDate = new Date(inputYear, inputMonth - 1, inputDay);
 
     if (isNaN(inputDate.getTime())) {
       console.error('Invalid date');
       return false;
     }
 
-    if (inputDate > currentDate) {
+    if (inputDate < currentDate) {
       return true;
     } else {
       return false;
