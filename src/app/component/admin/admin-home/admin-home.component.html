@@ -43,7 +43,7 @@
               <div class="col-8">
                 <div class="item-content">
                   <div class="fs-6 item-title">Teacher Count</div>
-                  <div class="fs-5 item-number">{{teacherCount}}</div>
+                  <div class="fs-5 item-number">{{ teacherCount }}</div>
                 </div>
               </div>
             </div>
@@ -66,7 +66,7 @@
               <div class="col-8">
                 <div class="item-content">
                   <div class="fs-6 item-title">Assignment Count</div>
-                  <div class="fs-5 item-number">{{assignmentCount}}</div>
+                  <div class="fs-5 item-number">{{ assignmentCount }}</div>
                 </div>
               </div>
             </div>
@@ -89,12 +89,39 @@
               <div class="col-8">
                 <div class="item-content">
                   <div class="fs-6 item-title">Today Present</div>
-                  <div class="fs-5 item-number">{{todayPresent}}</div>
+                  <div class="fs-5 item-number">{{ todayPresent }}</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="mt-5 row col-12">
+      <div
+        class="col-5"
+        style="
+          background-color: white;
+          border: 2px solid var(--primary-700);
+          border-radius: 10px;
+          padding: 2%;
+        "
+      >
+        <h4>Teacher Count:</h4>
+        <canvas id="TeacherWithSubject" width="400px" height="300px"></canvas>
+      </div>
+      <div class="col-2"></div>
+      <div
+        class="col-5"
+        style="
+          background-color: white;
+          border: 2px solid var(--primary-700);
+          border-radius: 10px;
+          padding: 2%;
+        "
+      >
+        <h4>Attendance Count:</h4>
+        <canvas id="todayPresentCount" width="400px" height="300px"></canvas>
       </div>
     </div>
   </div>

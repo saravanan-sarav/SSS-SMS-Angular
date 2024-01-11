@@ -46,4 +46,11 @@ export class ApiStudentService {
       studentRegistration
     );
   }
+
+  applyPermission(permissionApplication: any): Observable<AppResponse> {
+    return this.httpClient.post<AppResponse>(
+      `${urlEndpoint.baseUrl}/leave/apply`,
+      permissionApplication
+    );
+  }
 }

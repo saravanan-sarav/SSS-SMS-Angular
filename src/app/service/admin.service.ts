@@ -70,4 +70,12 @@ export class AdminService {
   getStudentReport(userId: number): Observable<AppResponse> {
     return this.apiAdminService.getStudentReport(userId);
   }
+
+  getTeacherCountWithSubject(): Observable<AppResponse> {
+    return this.apiAdminService.getTeacherCountWithSubject();
+  }
+
+  getAttendancePercentageCount(): Observable<AppResponse> {
+    return this.apiAdminService.getAttendancePercentageCount();
+  }
 }

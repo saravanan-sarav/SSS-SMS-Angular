@@ -91,4 +91,15 @@ export class ApiAdminService {
       `${urlEndpoint.adminUrl}/report/${userId}`
     );
   }
+  getTeacherCountWithSubject(): Observable<AppResponse> {
+    return this.httpClient.get<AppResponse>(
+      `${urlEndpoint.baseUrl}/subject/count`
+    );
+  }
+
+  getAttendancePercentageCount(): Observable<AppResponse> {
+    return this.httpClient.get<AppResponse>(
+      `${urlEndpoint.baseUrl}/attendance/count`
+    );
+  }
 }

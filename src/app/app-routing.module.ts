@@ -32,6 +32,7 @@ import { authGuard } from './guard/auth.guard';
 import { StudentParentDetailsComponent } from './component/student/student-parent-details/student-parent-details.component';
 import { StudentClassRoomComponent } from './component/student/student-class-room/student-class-room.component';
 import { TeacherLeaveTrackerComponent } from './component/teacher/teacher-leave-tracker/teacher-leave-tracker.component';
+import { ParentLeaveApplicationComponent } from './component/parent/parent-leave-application/parent-leave-application.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -150,6 +151,11 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
 
+  {
+    path: 'parent/home/leaveapplication',
+    component: ParentLeaveApplicationComponent,
+    canActivate: [authGuard],
+  },
   {
     path: 'student/home',
     component: StudentHomeComponent,

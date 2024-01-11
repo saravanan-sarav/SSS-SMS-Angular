@@ -1,0 +1,241 @@
+<app-parent-navbar></app-parent-navbar>
+<div class="row col-12">
+  <div class="col-1"><app-parent-sidebar></app-parent-sidebar></div>
+  <div class="ms-5 mt-2 col-10 mb-4 row">
+    <div class="mt-4 col-6">
+      <h2 class="text-start mb-4">Leave Application</h2>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="permission"
+          id="permission"
+          [checked]="permission ? true : false"
+          (click)="changeStatusPermission()"
+        />
+        <label class="form-check-label fs-5" for="permission">
+          Permission
+        </label>
+      </div>
+      <div class="form-check mb-3">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="leave"
+          id="leave"
+          [checked]="leave ? true : false"
+          (click)="changeStatusLeave()"
+        />
+        <label class="form-check-label fs-5" for="leave">Leave</label>
+      </div>
+      <form
+        #leaveApplicationForm="ngForm"
+        (ngSubmit)="leaveApplication(leaveApplicationForm)"
+      >
+        <div class="mb-3">
+          <label for="fromDate" class="form-label">{{
+            leave ? "From Date" : "Date"
+          }}</label>
+          <input
+            type="date"
+            [min]="todayDate"
+            class="form-control"
+            name="fromDate"
+            ngModel
+            #modelFromDate="ngModel"
+            required
+            [ngClass]="
+              modelFromDate.touched && modelFromDate.invalid
+                ? 'is-invalid form-control-failed'
+                : ''
+            "
+          />
+          <div style="height: 20px">
+            <div *ngIf="modelFromDate.invalid" style="color: red">
+              <div
+                *ngIf="
+                  modelFromDate.hasError('required') &&
+                  (modelFromDate.touched || modelFromDate.dirty)
+                "
+              >
+                Date is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="leave" class="mb-3">
+          <label for="toDate" class="form-label">To Date</label>
+          <input
+            type="date"
+            [min]="todayDate"
+            class="form-control"
+            name="toDate"
+            ngModel
+            #modelToDate="ngModel"
+            required
+            [ngClass]="
+              modelToDate.touched && modelToDate.invalid
+                ? 'is-invalid form-control-failed'
+                : ''
+            "
+          />
+          <div style="height: 20px">
+            <div *ngIf="modelToDate.invalid" style="color: red">
+              <div
+                *ngIf="
+                  modelToDate.hasError('required') &&
+                  (modelToDate.touched || modelToDate.dirty)
+                "
+              >
+                To Date is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="permission" class="mb-3">
+          <label for="fromTime" class="form-label">From Time</label>
+          <input
+            type="time"
+            class="form-control"
+            name="fromTime"
+            ngModel
+            #modelFromTime="ngModel"
+            required
+            [ngClass]="
+              modelFromTime.touched && modelFromTime.invalid
+                ? 'is-invalid form-control-failed'
+                : ''
+            "
+          />
+          <div style="height: 20px">
+            <div *ngIf="modelFromTime.invalid" style="color: red">
+              <div
+                *ngIf="
+                  modelFromTime.hasError('required') &&
+                  (modelFromTime.touched || modelFromTime.dirty)
+                "
+              >
+                From Time is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="permission" class="mb-3">
+          <label for="toTime" class="form-label">To Time</label>
+          <input
+            type="time"
+            class="form-control"
+            name="toTime"
+            ngModel
+            #modelToTime="ngModel"
+            required
+            [ngClass]="
+              modelToTime.touched && modelToTime.invalid
+                ? 'is-invalid form-control-failed'
+                : ''
+            "
+          />
+          <div style="height: 20px">
+            <div *ngIf="modelToTime.invalid" style="color: red">
+              <div
+                *ngIf="
+                  modelToTime.hasError('required') &&
+                  (modelToTime.touched || modelToTime.dirty)
+                "
+              >
+                To Time is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="reason" class="form-label"
+            >Reason for {{ leave ? "leave" : "Permission" }}</label
+          >
+          <select
+            class="form-select"
+            name="reason"
+            ngModel
+            required
+            #modelReason="ngModel"
+            [ngClass]="
+              modelReason.touched && modelReason.invalid
+                ? 'is-invalid form-control-failed'
+                : ''
+            "
+          >
+            <option value="" disabled selected>Select a reason</option>
+            <option value="sick">Sick</option>
+            <option value="Family emergency">Family emergency</option>
+            <option value="Special event">Special event</option>
+            <option value="Medical appointment">Medical appointment</option>
+            <option value="Personal reasons">Personal reasons</option>
+            <option value="Other">Other</option>
+          </select>
+          <div style="height: 20px">
+            <div *ngIf="modelReason.invalid" style="color: red">
+              <div
+                *ngIf="
+                  modelReason.hasError('required') &&
+                  (modelReason.touched || modelReason.dirty)
+                "
+              >
+                Reason is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="otherField" class="form-label">Comments</label>
+          <input
+            type="text"
+            class="form-control"
+            ngModel
+            name="comments"
+            #modelComments="ngModel"
+            required
+            [ngClass]="
+              modelComments.touched && modelComments.invalid
+                ? 'is-invalid form-control-failed'
+                : ''
+            "
+          />
+          <div style="height: 20px">
+            <div *ngIf="modelComments.invalid" style="color: red">
+              <div
+                *ngIf="
+                  modelComments.hasError('required') &&
+                  (modelComments.touched || modelComments.dirty)
+                "
+              >
+                Comments is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3 form-check">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            ngModel
+            name="checkProceed"
+            #modelChecked="ngModel"
+          />
+          <label class="form-check-label" for="checkProceed"
+            >Checked All fields proceed to Submit..!!</label
+          >
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!modelChecked.value"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+    <div class="col-6 text-center">
+      <ng-lottie [options]="options"></ng-lottie>
+    </div>
+  </div>
+</div>
