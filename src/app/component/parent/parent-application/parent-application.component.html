@@ -174,11 +174,8 @@
               "
             >
               <option value="">Select Standard</option>
-              <option
-                *ngFor="let std of standardList"
-                [ngValue]="std.standardId"
-              >
-                {{ std.standard }}
+              <option *ngFor="let std of standardList" [ngValue]="std.classId">
+                {{ std.classStandard }}
               </option>
             </select>
           </div>

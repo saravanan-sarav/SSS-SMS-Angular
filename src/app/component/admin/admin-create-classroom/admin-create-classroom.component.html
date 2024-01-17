@@ -1,14 +1,14 @@
 <app-admin-navbar></app-admin-navbar>
 <div class="row col-12 mt-5">
   <div class="col-1"><app-admin-sidebar></app-admin-sidebar></div>
-  <div class="container col-10">
+  <div class="container col-10 mt-5">
     <form
       class="col-5"
       #addClassRoom="ngForm"
       (ngSubmit)="createClass(addClassRoom)"
     >
       <!-- Standard Field -->
-      <h3>Classroom</h3>
+      <h3>Create Classroom</h3>
       <input
         type="hidden"
         name="classRoomId"

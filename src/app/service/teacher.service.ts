@@ -59,7 +59,15 @@ export class TeacherService implements OnInit {
     return this.apiTeacherService.getStudentListForAssignment(assignmentId);
   }
 
-  entryMarkForStudent(assignmentEntry:TeacherAssignmentMarkEntryRequest): Observable<AppResponse> {
+  entryMarkForStudent(
+    assignmentEntry: TeacherAssignmentMarkEntryRequest
+  ): Observable<AppResponse> {
     return this.apiTeacherService.entryMarkForStudent(assignmentEntry);
+  }
+
+  getAllLeaveList(): Observable<AppResponse> {
+    return this.apiTeacherService.getAllLeaveList(
+      this.storageService.getLoggedInUser().id
+    );
   }
 }

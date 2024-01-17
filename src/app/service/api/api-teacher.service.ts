@@ -66,4 +66,10 @@ export class ApiTeacherService {
       assignmentEntry
     );
   }
+
+  getAllLeaveList(userId: number): Observable<AppResponse> {
+    return this.httpClient.get<AppResponse>(
+      `${urlEndpoint.teacherUrl}/leave/all/${userId}`
+    );
+  }
 }

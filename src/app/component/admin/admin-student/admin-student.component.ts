@@ -132,6 +132,7 @@ export class AdminStudentComponent implements OnInit {
     let startIndex: number = (this.currentPage - 1) * this.listPerTime;
     let endIndex: number = startIndex + this.listPerTime;
     this.studentUpdateList = this.studentDetails.slice(startIndex, endIndex);
+    this.sortData();
   }
 
   setListOfItems(): void {
@@ -141,18 +142,21 @@ export class AdminStudentComponent implements OnInit {
     this.studentUpdateList = this.studentDetails.filter((student) => {
       student.studentStatusId == 1;
     });
+    this.sortData();
   }
 
   withdrawStudentList(): void {
     this.studentUpdateList = this.studentDetails.filter((student) => {
       student.studentStatusId == 4;
     });
+    this.sortData();
   }
 
   graduatedStudentList(): void {
     this.studentUpdateList = this.studentDetails.filter((student) => {
       student.studentStatusId == 3;
     });
+    this.sortData();
   }
 
   activeStudentList(): void {
@@ -212,5 +216,20 @@ export class AdminStudentComponent implements OnInit {
 
   downloadReport(userId: number): void {
     this.reportGeneratorService.getStudentDetailReport(userId);
+  }
+
+  sortData(): void {
+    this.studentUpdateList.sort((a, b) => {
+      let firstNameA = a.firstName.toUpperCase();
+      let firstNameB = b.firstName.toUpperCase();
+      if (firstNameA < firstNameB) {
+        return -1;
+      }
+      if (firstNameA > firstNameB) {
+        return 1;
+      }
+
+      return 0;
+    });
   }
 }

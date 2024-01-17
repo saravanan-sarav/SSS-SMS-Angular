@@ -66,8 +66,6 @@ export class ApiAdminService {
   createClassroom(
     createClassRoomRequest: AdminCreateClassRoom
   ): Observable<AppResponse> {
-    console.log('api call came');
-
     return this.httpClient.post<AppResponse>(
       `${urlEndpoint.baseUrl}/classroom`,
       createClassRoomRequest
@@ -100,6 +98,13 @@ export class ApiAdminService {
   getAttendancePercentageCount(): Observable<AppResponse> {
     return this.httpClient.get<AppResponse>(
       `${urlEndpoint.baseUrl}/attendance/count`
+    );
+  }
+
+  deleteClassRoom(classId: number): Observable<AppResponse> {
+    return this.httpClient.post<AppResponse>(
+      `${urlEndpoint.baseUrl}/classroom/delete/`,
+      classId
     );
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Route, Router } from '@angular/router';
+import { CLassList } from 'src/app/model/class-list';
 import { Register } from 'src/app/model/register';
 import { Standard } from 'src/app/model/standard';
 import { CommonService } from 'src/app/service/common.service';
@@ -13,7 +14,7 @@ import { ToasterServiceService } from 'src/app/service/toaster-service.service';
   styleUrls: ['./parent-application.component.css'],
 })
 export class ParentApplicationComponent implements OnInit {
-  standardList: Standard[] = [];
+  standardList: CLassList[] = [];
 
   maxDate: string;
   parentUserId: number = 0;
@@ -36,7 +37,7 @@ export class ParentApplicationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.commonService.getAllStandard().subscribe({
+    this.commonService.getAllClass().subscribe({
       next: (response: any) => {
         this.standardList = response.data;
       },

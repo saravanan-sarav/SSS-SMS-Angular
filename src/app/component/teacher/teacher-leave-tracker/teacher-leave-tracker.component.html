@@ -3,18 +3,65 @@
   <div class="col-1"><app-teacher-sidebar></app-teacher-sidebar></div>
   <div class="col-11">
     <div class="container">
-      <div class="row mb-3">
-        <div class="col-3">
-          <div class="form-group">
-            <label for="statusDropdown">Status:</label>
-            <select class="form-control" id="statusDropdown">
-              <option value="approve">Approve</option>
-              <option value="reject">Reject</option>
-              <option value="pending">Pending</option>
-            </select>
+      <div class="row mb-3 col-12">
+        <div class="form-group d-flex col-12">
+          <div class="col-7 d-flex">
+            <div class="col-6">
+              <label for="statusDropdown">Status:</label>
+              <select
+                class="form-control"
+                name="status"
+                ngModel
+                #modelStatus="ngModel"
+                (click)="changeStatus(modelStatus.value)"
+              >
+                <option value="" disabled>Filter</option>
+                <option value="1">Pending</option>
+                <option value="2">Approve</option>
+                <option value="3">Reject</option>
+                <option value="4">All</option>
+              </select>
+            </div>
+            <div
+              class="col-5 d-flex"
+              *ngIf="filterResult != ''"
+              style="padding-top: 40px; margin-left: 20px"
+            >
+              <p>Results:</p>
+              <p style="font-weight: 700; margin-left: 5px">
+                {{ filterResult }}
+              </p>
+            </div>
+          </div>
+          <div class="col-5 d-flex justify-content-end pt-4">
+            <div class="form-check me-3">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="permission"
+                id="permission"
+                [checked]="permission ? true : false"
+                (click)="changeStatusPermission()"
+              />
+              <label class="form-check-label fs-5" for="permission">
+                Permission
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="leave"
+                id="leave"
+                [checked]="leave ? true : false"
+                (click)="changeStatusLeave()"
+              />
+              <label class="form-check-label fs-5" for="leave">Leave</label>
+            </div>
           </div>
         </div>
-        <div class="row col-9 justify-content-end">
+
+        <!-- <div class="row col-6 justify-content-end">
           <div class="col-2">
             <label class="mr-sm-2" for="searchYear">Year:</label>
             <select class="form-control mb-2 mr-sm-2" id="searchYear">
@@ -34,80 +81,50 @@
           <button type="submit" class="mt-4 btn btn-primary mb-2 col-2">
             Search
           </button>
-        </div>
+        </div> -->
       </div>
 
-      <div class="table-responsive">
+      <div *ngIf="updatedDataList.length > 0 && leave" class="table-responsive">
         <table class="table table-bordered">
           <thead>
             <tr>
               <th>S.no</th>
-              <th>FirstName</th>
-              <th>LastName</th>
+              <th>F.Name</th>
+              <th>L Name</th>
+              <th>DOA</th>
               <th>From</th>
               <th>To</th>
-              <th>From Time</th>
-              <th>To Time</th>
+              <th>Reason</th>
               <th>Comments</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>John</td>
-              <td>Doe</td>
-              <td>2023-01-01</td>
-              <td>2023-01-05</td>
-              <td>08:00 AM</td>
-              <td>05:00 PM</td>
-              <td>Vacation</td>
+            <tr
+              *ngFor="
+                let leaveData of updatedDataList;
+                let indexOfElement = index
+              "
+            >
+              <td>{{ indexOfElement + 1 }}</td>
+              <td>{{ leaveData.firstName }}</td>
+              <td>{{ leaveData.lastName }}</td>
+              <td>{{ leaveData.appliedDate }}</td>
+              <td>{{ leaveData.fromDate }}</td>
+              <td>{{ leaveData.toDate }}</td>
+              <td>{{ leaveData.leaveReason }}</td>
               <td>
-                <select class="form-control">
-                  <option value="approve">Approve</option>
-                  <option value="reject">Reject</option>
-                  <option value="pending" selected>Pending</option>
-                </select>
+                <textarea cols="20" rows="2" disabled>{{
+                  leaveData.comments
+                }}</textarea>
               </td>
+
               <td>
-                <button class="btn btn-danger">Action</button>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jane</td>
-              <td>Smith</td>
-              <td>2023-02-10</td>
-              <td>2023-02-15</td>
-              <td>09:00 AM</td>
-              <td>04:00 PM</td>
-              <td>Sick Leave</td>
-              <td>
-                <select class="form-control">
-                  <option value="approve" selected>Approve</option>
-                  <option value="reject">Reject</option>
-                  <option value="pending">Pending</option>
-                </select>
-              </td>
-              <td>
-                <button class="btn btn-danger">Action</button>
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Alice</td>
-              <td>Johnson</td>
-              <td>2023-03-20</td>
-              <td>2023-03-25</td>
-              <td>10:30 AM</td>
-              <td>06:30 PM</td>
-              <td>Conference</td>
-              <td>
-                <select class="form-control">
-                  <option value="approve">Approve</option>
-                  <option value="reject">Reject</option>
-                  <option value="pending">Pending</option>
+                <select [value]="leaveData.leaveStatus" class="form-control">
+                  <option value="1">Pending</option>
+                  <option value="2">Approve</option>
+                  <option value="3">Reject</option>
                 </select>
               </td>
               <td>
@@ -118,9 +135,68 @@
         </table>
       </div>
 
-      <div class="row">
+      <div
+        *ngIf="updatedDataList.length > 0 && permission"
+        class="table-responsive"
+      >
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>S.no</th>
+              <th>F.Name</th>
+              <th>L Name</th>
+              <th>DOA</th>
+              <th>Date</th>
+              <th>From Time</th>
+              <th>To Time</th>
+              <th>Reason</th>
+              <th>Comments</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let leaveData of updatedDataList;
+                let indexOfElement = index
+              "
+            >
+              <td>{{ indexOfElement + 1 }}</td>
+              <td>{{ leaveData.firstName }}</td>
+              <td>{{ leaveData.lastName }}</td>
+              <td>{{ leaveData.appliedDate }}</td>
+              <td>{{ leaveData.fromDate }}</td>
+              <td>{{ leaveData.fromTime }}</td>
+              <td>{{ leaveData.toTime }}</td>
+              <td>{{ leaveData.leaveReason }}</td>
+              <td>
+                <textarea cols="20" rows="2" disabled>{{
+                  leaveData.comments
+                }}</textarea>
+              </td>
+
+              <td>
+                <select [value]="leaveData.leaveStatus" class="form-control">
+                  <option value="1">Pending</option>
+                  <option value="2">Approve</option>
+                  <option value="3">Reject</option>
+                </select>
+              </td>
+              <td>
+                <button class="btn btn-danger">Action</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div *ngIf="updatedDataList.length > 0" class="row">
         <div class="col-md-6">
-          <p>Total Count: <span id="totalCount">0</span></p>
+          <p>
+            Total Count:
+            <span id="totalCount">{{ updatedDataList.length }}</span>
+          </p>
         </div>
         <!-- <div class="col-md-6">
           <nav aria-label="Page navigation">
@@ -141,6 +217,12 @@
             </ul>
           </nav>
         </div> -->
+      </div>
+      <div
+        style="height: 400px; width: 400px; margin-left: 35%"
+        *ngIf="updatedDataList.length == 0"
+      >
+        <ng-lottie [options]="options"></ng-lottie>
       </div>
     </div>
   </div>

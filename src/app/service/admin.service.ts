@@ -78,4 +78,7 @@ export class AdminService {
   getAttendancePercentageCount(): Observable<AppResponse> {
     return this.apiAdminService.getAttendancePercentageCount();
   }
+  deleteClassRoom(classId: number): Observable<AppResponse> {
+    return this.apiAdminService.deleteClassRoom(classId);
+  }
 }

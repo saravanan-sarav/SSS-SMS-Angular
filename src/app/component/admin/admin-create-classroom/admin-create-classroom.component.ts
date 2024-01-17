@@ -6,6 +6,7 @@ import { Standard } from 'src/app/model/standard';
 import { TeacherList } from 'src/app/model/teacher-list';
 import { AdminService } from 'src/app/service/admin.service';
 import { CommonService } from 'src/app/service/common.service';
+import { ToasterServiceService } from 'src/app/service/toaster-service.service';
 
 @Component({
   selector: 'app-admin-create-classroom',
@@ -47,7 +48,8 @@ export class AdminCreateClassroomComponent implements OnInit {
   constructor(
     private adminService: AdminService,
     private commonService: CommonService,
-    private router: Router
+    private router: Router,
+    private toasterService: ToasterServiceService
   ) {}
 
   ngOnInit(): void {
@@ -68,7 +70,7 @@ export class AdminCreateClassroomComponent implements OnInit {
     let notNull = this.allTeacherList
       .map((a) => a.standardId)
       .filter((a) => a !== null);
-    console.log(notNull);
+    // console.log(notNull);
 
     let all = this.AllclassStandard.map((a) => a.standardId);
 
@@ -82,41 +84,6 @@ export class AdminCreateClassroomComponent implements OnInit {
     this.classStandard = this.AllclassStandard.filter((a) =>
       f.includes(a.standardId)
     );
-
-    // for (let teacher of this.allTeacherList) {
-    //   if (teacher.standardId !== null) {
-    //     for (let std of this.AllclassStandard) {
-    //       if (std.standardId !== teacher.standardId) {
-    //         if (!this.classStandard.includes(std)) this.classStandard.push(std);
-    //       }
-    //     }
-    //   }
-    // }
-    // let finalT: [] = [];
-
-    // let ab: number[] = this.classStandard.map((c) => c.standardId);
-
-    // for (let teacher of this.allTeacherList) {
-    //   if (teacher.standardId) {
-    //     if (!ab.includes(teacher.standardId)) {
-    //       finalT.push(
-    //         this.allTeacherList.find(
-    //           (t) => t.standardId === teacher.standardId
-    //         )!
-    //       );
-    //     }
-    //   }
-    // }
-
-    // this.allTeacherList.forEach((teacher) => {
-    //   if (teacher.standardId !== null) {
-    //     this.AllclassStandard.forEach((standard) => {
-    //       if (standard.standardId === teacher.standardId) {
-
-    //       }
-    //     });
-    //   }
-    // });
   }
 
   getAllTeacherList(): void {
@@ -172,19 +139,35 @@ export class AdminCreateClassroomComponent implements OnInit {
   createClass(addClassRoom: NgForm): void {
     let createClassRoomRequest: AdminCreateClassRoom = addClassRoom.value;
     console.log(createClassRoomRequest);
-
-    this.adminService.createClassroom(createClassRoomRequest).subscribe({
-      next: (response: any) => {
-        console.log(response.data);
-        this.router.navigate(['/admin/home/classes'], { replaceUrl: true });
-      },
-    });
+    if (
+      createClassRoomRequest.classRoomId == 0 &&
+      createClassRoomRequest.englishTeacherUserId &&
+      createClassRoomRequest.standardId &&
+      createClassRoomRequest.tamilTeacherUserId &&
+      createClassRoomRequest.mathsTeacherUserId &&
+      createClassRoomRequest.scienceTeacherUserId &&
+      createClassRoomRequest.socialTeacherUserId
+    ) {
+      this.adminService.createClassroom(createClassRoomRequest).subscribe({
+        next: (response: any) => {
+        
+          this.toasterService.success('Created successfully', 'Classroom');
+          this.router.navigate(['/admin/home/classes'], { replaceUrl: true });
+        },
+      });
+    } else {
+      this.toasterService.error('Select All Fields...', 'Classroom');
+    }
   }
 
   assignToSubject(): void {
+    console.log(this.createClassroom.teacherUserId);
+
     this.selectedTeacher = this.classTeacher.find(
       (ct) => ct.teacherUserId === this.createClassroom.teacherUserId
     )!;
+    console.log(this.selectedTeacher);
+
     if (this.selectedTeacher.teacherSubjectId == 1) {
       this.createClassroom.tamilTeacherUserId =
         this.selectedTeacher.teacherUserId;
