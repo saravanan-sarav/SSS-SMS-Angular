@@ -33,6 +33,7 @@ import { StudentParentDetailsComponent } from './component/student/student-paren
 import { StudentClassRoomComponent } from './component/student/student-class-room/student-class-room.component';
 import { TeacherLeaveTrackerComponent } from './component/teacher/teacher-leave-tracker/teacher-leave-tracker.component';
 import { ParentLeaveApplicationComponent } from './component/parent/parent-leave-application/parent-leave-application.component';
+import { LeaveHistoryComponent } from './component/parent/leave-history/leave-history.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -154,6 +155,11 @@ const routes: Routes = [
   {
     path: 'parent/home/leaveapplication',
     component: ParentLeaveApplicationComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'parent/leave/history',
+    component: LeaveHistoryComponent,
     canActivate: [authGuard],
   },
   {

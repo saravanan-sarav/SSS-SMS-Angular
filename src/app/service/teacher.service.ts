@@ -5,6 +5,7 @@ import { AppResponse } from '../model/appResponse';
 import { StorageService } from './storage.service';
 import { TeacherAttendanceRequestForStudent } from '../model/request/teacher-attendance-request-for-student';
 import { TeacherAssignmentMarkEntryRequest } from '../model/request/teacher-assignment-mark-entry-request';
+import { TeacherLeaveStatusChangeRequest } from '../model/request/teacher-leave-status-change-request';
 
 @Injectable({
   providedIn: 'root',
@@ -69,5 +70,8 @@ export class TeacherService implements OnInit {
     return this.apiTeacherService.getAllLeaveList(
       this.storageService.getLoggedInUser().id
     );
+  }
+  leaveStatusChange(leaveStatusChange:TeacherLeaveStatusChangeRequest): Observable<AppResponse> {
+    return this.apiTeacherService.leaveStatusChange(leaveStatusChange);
   }
 }

@@ -764,13 +764,13 @@
             </div>
           </div>
 
-          <div class="col-3">
+          <div class="col-3 password-container">
             <label class="mb-2" for="studentConfirmPassword"
               >Confirm Password</label
             >
             <input
-              type="password"
-              class="form-control"
+              [type]="confirmPasswordToggle ? 'password' : 'text'"
+              class="form-control password-input"
               name="studentConfirmPassword"
               placeholder="Confirm Password"
               ngModel
@@ -784,6 +784,13 @@
                   : ''
               "
             />
+            <span class="password-toggle">
+              <i
+                class="fa fa-eye mt-3"
+                id="eyeIcon"
+                (click)="togglePassword()"
+              ></i>
+            </span>
             <div
               *ngIf="
                 modelStudentConfirmPassword.invalid &&
@@ -795,14 +802,18 @@
               <div *ngIf="modelStudentConfirmPassword.hasError('required')">
                 Password is required.
               </div>
-              <div
-                *ngIf="
-                  modelStudentConfirmPassword.value !==
-                  modelStudentPassword.value
-                "
-              >
-                Confirm Password mismatch
-              </div>
+            </div>
+            <div
+              style="color: red"
+              *ngIf="
+                modelStudentConfirmPassword.dirty &&
+                modelStudentConfirmPassword.value !=
+                  modelStudentPassword.value &&
+                modelStudentConfirmPassword.value.length !==
+                  modelStudentPassword.value.length
+              "
+            >
+              Confirm Password mismatch
             </div>
           </div>
         </div>
@@ -871,18 +882,18 @@
                 Password is required.
               </div>
               <div *ngIf="modelParentPassword.hasError('minlength')">
-                Password must contain at least 4 characters.
+                Password must contain 4 characters.
               </div>
             </div>
           </div>
 
-          <div class="col-3">
+          <div class="col-3 password-container">
             <label class="mb-2" for="parentConfrimPassword"
               >Confirm Password</label
             >
             <input
-              type="password"
-              class="form-control"
+              [type]="parentPasswordToggle ? 'password' : 'text'"
+              class="form-control password-input"
               name="parentConfrimPassword"
               placeholder="Confirm Password"
               ngModel
@@ -896,20 +907,34 @@
                   : ''
               "
             />
-            <div
-              *ngIf="
-                modelParentConfirmPassword.invalid &&
-                (modelParentConfirmPassword.dirty ||
-                  modelParentConfirmPassword.touched)
-              "
-              style="color: red"
-            >
-              <div *ngIf="modelStudentConfirmPassword.hasError('required')">
-                Password is required.
-              </div>
+            <span class="password-toggle">
+              <i
+                class="fa fa-eye"
+                id="eyeIcon"
+                (click)="parentPasswordChange()"
+              ></i>
+            </span>
+            <div style="height: 40px">
               <div
                 *ngIf="
-                  modelParentConfirmPassword.value !== modelParentPassword.value
+                  modelParentConfirmPassword.invalid &&
+                  (modelParentConfirmPassword.dirty ||
+                    modelParentConfirmPassword.touched)
+                "
+                style="color: red"
+              >
+                <div *ngIf="modelParentConfirmPassword.hasError('required')">
+                  Password is required.
+                </div>
+              </div>
+              <div
+                style="color: red"
+                *ngIf="
+                  modelParentConfirmPassword.dirty &&
+                  modelParentConfirmPassword.value !=
+                    modelParentPassword.value &&
+                  modelParentConfirmPassword.value.length !==
+                    modelParentPassword.value.length
                 "
               >
                 Confirm Password mismatch

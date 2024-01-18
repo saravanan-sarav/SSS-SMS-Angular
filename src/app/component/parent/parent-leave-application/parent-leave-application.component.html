@@ -5,7 +5,9 @@
     <div class="mt-4 col-5">
       <div class="text-start mb-4 d-flex justify-content-between">
         <h2>Leave Application</h2>
-        <a class="btn btn-primary mb-2">Leave History</a>
+        <a class="btn btn-primary mb-2" routerLink="/parent/leave/history"
+          >Leave History</a
+        >
       </div>
 
       <div class="form-check">
@@ -48,6 +50,7 @@
             ngModel
             #modelFromDate="ngModel"
             required
+            (change)="setFromDate($event)"
             [ngClass]="
               modelFromDate.touched && modelFromDate.invalid
                 ? 'is-invalid form-control-failed'
@@ -71,7 +74,7 @@
           <label for="toDate" class="form-label">To Date</label>
           <input
             type="date"
-            [min]="todayDate"
+            [min]="toDateLimit"
             class="form-control"
             name="toDate"
             ngModel
@@ -317,7 +320,10 @@
           </p>
         </div>
       </div>
-      <!-- <ng-lottie [options]="options"></ng-lottie> -->
+      <!-- <ng-lottie
+        *ngIf="!recentLeaveApplication.leaveType"
+        [options]="options"
+      ></ng-lottie> -->
     </div>
   </div>
 </div>

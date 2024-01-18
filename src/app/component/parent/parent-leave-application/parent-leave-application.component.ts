@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { S } from '@fullcalendar/core/internal-common';
 import { AnimationOptions } from 'ngx-lottie';
 import { LeaveApplication } from 'src/app/model/leave-application';
 import { LeaveApplyResponse } from 'src/app/model/response/leave-apply-response';
@@ -17,14 +18,12 @@ import { ToasterServiceService } from 'src/app/service/toaster-service.service';
 export class ParentLeaveApplicationComponent {
   options: AnimationOptions = {
     path: '/assets/applyleave.json',
-    rendererSettings: {
-      className: 'lottie-leave-application',
-    },
   };
   todayDate: string = this.getFormattedDate();
-
+  fromDate: string = '';
   leave: boolean = true;
   permission: boolean = false;
+  toDateLimit: string = '';
 
   recentLeaveApplication: LeaveApplyResponse = {
     studentFirstName: '',
@@ -46,7 +45,6 @@ export class ParentLeaveApplicationComponent {
   toTime: string[] = [];
 
   leaveReasonList: LeaveReason[] = [];
-
   constructor(
     private storageService: StorageService,
     private parentService: ParentService,
@@ -77,7 +75,6 @@ export class ParentLeaveApplicationComponent {
           studentUserId: this.storageService.getLoggedInUser().studentId!,
           leaveReasonId: leaveApplication.value.reason,
         };
-        console.log(permissionApply);
 
         this.parentService.applyPermission(permissionApply).subscribe({
           next: (response: any) => {
@@ -152,10 +149,10 @@ export class ParentLeaveApplicationComponent {
   getRecentApplication(): void {
     this.parentService.getRecentApplication().subscribe({
       next: (response: any) => {
+        this.recentLeaveApplication = response.data;
         this.dateParts = this.splitDateAndTime(response.data.applyDate);
         this.fromTime = this.splitTimeAndFormat(response.data.fromTime);
         this.toTime = this.splitTimeAndFormat(response.data.toTime);
-        this.recentLeaveApplication = response.data;
       },
     });
   }
@@ -227,5 +224,10 @@ export class ParentLeaveApplicationComponent {
       Math.abs((toDate.getTime() - fromDate.getTime()) / oneDay)
     );
     return daysDifference;
+  }
+
+  setFromDate(event: any): void {
+    this.toDateLimit = event.target.value;
+    console.log(event.target.value);
   }
 }

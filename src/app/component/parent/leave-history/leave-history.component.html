@@ -1,8 +1,9 @@
-<app-teacher-navbar></app-teacher-navbar>
-<div class="row col-12 mt-5 ps-5">
-  <div class="col-1"><app-teacher-sidebar></app-teacher-sidebar></div>
+<app-parent-navbar></app-parent-navbar>
+<div class="row col-12">
+  <div class="col-1"><app-parent-sidebar></app-parent-sidebar></div>
   <div class="col-11">
-    <div class="container">
+    <div class="container mt-5">
+      <h3 class="mb-3">Leave History</h3>
       <div class="row mb-3 col-12">
         <div class="form-group d-flex col-12">
           <div class="col-7 d-flex">
@@ -75,7 +76,6 @@
               <th>Reason</th>
               <th>Comments</th>
               <th>Status</th>
-              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -97,28 +97,20 @@
                   leaveData.comments
                 }}</textarea>
               </td>
-
               <td>
-                <select
-                  [(ngModel)]="leaveData.leaveStatus"
-                  name="statusId"
-                  ngModel
-                  #modelStatusId="ngModel"
-                  class="form-control"
+                <p
+                  [ngClass]="
+                    statusIndicatorApproved(leaveData.leaveStatusId)
+                      ? 'approved'
+                      : '' || statusIndicatorRejected(leaveData.leaveStatusId)
+                      ? 'rejected'
+                      : '' || statusIndicatorPending(leaveData.leaveStatusId)
+                      ? 'pending'
+                      : ''
+                  "
                 >
-                  <option value="1">Pending</option>
-                  <option value="2">Approve</option>
-                  <option value="3">Reject</option>
-                </select>
-              </td>
-              <td>
-                <button
-                  [disabled]="!modelStatusId.dirty"
-                  class="btn btn-danger"
-                  (click)="leaveStatusChange(modelStatusId.value, leaveData.id)"
-                >
-                  Action
-                </button>
+                  {{ leaveData.leaveStatus }}
+                </p>
               </td>
             </tr>
           </tbody>
@@ -142,7 +134,6 @@
               <th>Reason</th>
               <th>Comments</th>
               <th>Status</th>
-              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -167,14 +158,19 @@
               </td>
 
               <td>
-                <select [value]="leaveData.leaveStatus" class="form-control">
-                  <option value="1">Pending</option>
-                  <option value="2">Approve</option>
-                  <option value="3">Reject</option>
-                </select>
-              </td>
-              <td>
-                <button class="btn btn-danger">Action</button>
+                <p
+                  [ngClass]="
+                    statusIndicatorApproved(leaveData.leaveStatusId)
+                      ? 'approved'
+                      : '' || statusIndicatorRejected(leaveData.leaveStatusId)
+                      ? 'rejected'
+                      : '' || statusIndicatorPending(leaveData.leaveStatusId)
+                      ? 'pending'
+                      : ''
+                  "
+                >
+                  {{ leaveData.leaveStatus }}
+                </p>
               </td>
             </tr>
           </tbody>

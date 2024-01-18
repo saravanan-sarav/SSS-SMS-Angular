@@ -15,6 +15,8 @@ import { ToasterServiceService } from 'src/app/service/toaster-service.service';
 })
 export class ParentApplicationComponent implements OnInit {
   standardList: CLassList[] = [];
+  confirmPasswordToggle: boolean = true;
+  parentPasswordToggle: boolean = true;
 
   maxDate: string;
   parentUserId: number = 0;
@@ -101,5 +103,11 @@ export class ParentApplicationComponent implements OnInit {
       return age - 1;
     }
     return age;
+  }
+  togglePassword(): void {
+    this.confirmPasswordToggle = !this.confirmPasswordToggle;
+  }
+  parentPasswordChange(): void {
+    this.parentPasswordToggle = !this.parentPasswordToggle;
   }
 }

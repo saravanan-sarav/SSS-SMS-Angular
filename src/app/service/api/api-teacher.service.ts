@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AppResponse } from 'src/app/model/appResponse';
 import { TeacherAssignmentMarkEntryRequest } from 'src/app/model/request/teacher-assignment-mark-entry-request';
 import { TeacherAttendanceRequestForStudent } from 'src/app/model/request/teacher-attendance-request-for-student';
+import { TeacherLeaveStatusChangeRequest } from 'src/app/model/request/teacher-leave-status-change-request';
 import { urlEndpoint } from 'src/app/utils/constant';
 
 @Injectable({
@@ -70,6 +71,15 @@ export class ApiTeacherService {
   getAllLeaveList(userId: number): Observable<AppResponse> {
     return this.httpClient.get<AppResponse>(
       `${urlEndpoint.teacherUrl}/leave/all/${userId}`
+    );
+  }
+
+  leaveStatusChange(
+    leaveStatusChange: TeacherLeaveStatusChangeRequest
+  ): Observable<AppResponse> {
+    return this.httpClient.post<AppResponse>(
+      `${urlEndpoint.teacherUrl}/leave/status`,
+      leaveStatusChange
     );
   }
 }

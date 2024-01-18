@@ -54,6 +54,7 @@ import { RegisterationNavbarComponent } from './component/parent/registeration-n
 import { ToastrModule } from 'ngx-toastr';
 import { TeacherLeaveTrackerComponent } from './component/teacher/teacher-leave-tracker/teacher-leave-tracker.component';
 import { ParentLeaveApplicationComponent } from './component/parent/parent-leave-application/parent-leave-application.component';
+import { LeaveHistoryComponent } from './component/parent/leave-history/leave-history.component';
 
 export function playerFactory() {
   return player;
@@ -108,6 +109,7 @@ export function pluginsCalender() {
     RegisterationNavbarComponent,
     TeacherLeaveTrackerComponent,
     ParentLeaveApplicationComponent,
+    LeaveHistoryComponent,
   ],
   imports: [
     BrowserModule,

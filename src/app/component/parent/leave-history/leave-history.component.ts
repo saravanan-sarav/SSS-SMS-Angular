@@ -1,21 +1,22 @@
-import { OnInit, Component } from '@angular/core';
-import { el } from '@fullcalendar/core/internal-common';
+import { Component } from '@angular/core';
+import { el, s } from '@fullcalendar/core/internal-common';
 import { AnimationOptions } from 'ngx-lottie';
-import { TeacherLeaveStatusChangeRequest } from 'src/app/model/request/teacher-leave-status-change-request';
+import { elementAt } from 'rxjs';
+import { ParentLeaveDataResponse } from 'src/app/model/response/parent-leave-data-response';
 import { TeacherLeaveDataResponse } from 'src/app/model/response/teacher-leave-data-response';
+import { ParentService } from 'src/app/service/parent.service';
 import { TeacherService } from 'src/app/service/teacher.service';
-import { ToasterServiceService } from 'src/app/service/toaster-service.service';
 
 @Component({
-  selector: 'app-teacher-leave-tracker',
-  templateUrl: './teacher-leave-tracker.component.html',
-  styleUrls: ['./teacher-leave-tracker.component.css'],
+  selector: 'app-leave-history',
+  templateUrl: './leave-history.component.html',
+  styleUrls: ['./leave-history.component.css'],
 })
-export class TeacherLeaveTrackerComponent implements OnInit {
-  leaveDataList: TeacherLeaveDataResponse[] = [];
+export class LeaveHistoryComponent {
+  leaveDataList: ParentLeaveDataResponse[] = [];
   filterResult: String = '';
-  TypeFilterLeaveData: TeacherLeaveDataResponse[] = [];
-  updatedDataList: TeacherLeaveDataResponse[] = [];
+  TypeFilterLeaveData: ParentLeaveDataResponse[] = [];
+  updatedDataList: ParentLeaveDataResponse[] = [];
   leave: boolean = true;
   permission: boolean = false;
 
@@ -23,12 +24,9 @@ export class TeacherLeaveTrackerComponent implements OnInit {
     path: '/assets/NoLeaveDataFound.json',
   };
 
-  constructor(
-    private teacherService: TeacherService,
-    private toasterService: ToasterServiceService
-  ) {}
+  constructor(private parentService: ParentService) {}
   ngOnInit(): void {
-    this.teacherService.getAllLeaveList().subscribe({
+    this.parentService.getLeaveHistory().subscribe({
       next: (response: any) => {
         this.leaveDataList = response.data;
         this.loadData();
@@ -46,7 +44,7 @@ export class TeacherLeaveTrackerComponent implements OnInit {
         (leave) => leave.leaveTypeId != 1
       );
     }
-    this.changeStatus(1);
+    this.changeStatus(4);
   }
 
   changeStatus(statusId: number): void {
@@ -57,7 +55,7 @@ export class TeacherLeaveTrackerComponent implements OnInit {
       }
     } else {
       this.updatedDataList = this.TypeFilterLeaveData.filter(
-        (leaveData) => leaveData.leaveStatus == statusId
+        (leaveData) => leaveData.leaveStatusId == statusId
       );
     }
     switch (statusId) {
@@ -86,21 +84,25 @@ export class TeacherLeaveTrackerComponent implements OnInit {
     this.permission = false;
     this.loadData();
   }
+  statusIndicator(statusId: number): boolean {
+    if (statusId == 3) {
+      return false;
+    } else if (statusId == 2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
-  leaveStatusChange(statusId: number, id: number): void {
-    let leaveStatusChange: TeacherLeaveStatusChangeRequest = {
-      statusId: statusId,
-      id: id,
-    };
-    this.teacherService.leaveStatusChange(leaveStatusChange).subscribe({
-      next: (response: any) => {
-        if (response.data == 1) {
-          this.toasterService.success('Updated', 'Leave');
-        } else {
-          this.toasterService.error('Something Went Wrong', 'Leave');
-        }
-        this.ngOnInit();
-      },
-    });
+  statusIndicatorPending(statusId: number): boolean {
+    return statusId === 1;
+  }
+
+  statusIndicatorRejected(statusId: number): boolean {
+    return statusId === 3;
+  }
+
+  statusIndicatorApproved(statusId: number): boolean {
+    return statusId === 2;
   }
 }

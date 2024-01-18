@@ -15,10 +15,19 @@ export class ParentStudentAttendanceComponent {
   currentMonth: number = 0;
   currentYear: number = 0;
   calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth',
     plugins: [dayGridPlugin],
-    // businessHours: this.getBusinessHours(),
+    // dateClick: this.handleDateClick.bind(this),
   };
+
+  handleDateClick(arg: any) {
+    // arg.date contains the clicked date
+    const newEvent = {
+      title: 'New Event',
+      start: arg.dateStr,
+    };
+    console.log(newEvent);
+    console.log(arg);
+  }
 
   constructor(private parentService: ParentService) {}
 

@@ -51,4 +51,10 @@ export class ParentService {
       this.storageService.getLoggedInUser().studentId!
     );
   }
+
+  getLeaveHistory(): Observable<AppResponse> {
+    return this.apiStudentService.getLeaveHistory(
+      this.storageService.getLoggedInUser().studentId!
+    );
+  }
 }

@@ -65,4 +65,10 @@ export class ApiStudentService {
       `${urlEndpoint.baseUrl}/leave/recent/${studentUserId}`
     );
   }
+
+  getLeaveHistory(studentUserId: number): Observable<AppResponse> {
+    return this.httpClient.get<AppResponse>(
+      `${urlEndpoint.baseUrl}/leave/all/${studentUserId}`
+    );
+  }
 }

@@ -1,15 +1,16 @@
-export interface TeacherLeaveDataResponse {
+export interface ParentLeaveDataResponse {
   id: number;
   firstName: string;
   lastName: string;
-  leaveTypeId: 1;
+  leaveTypeId: number;
   leaveType: string;
   appliedDate: string;
   fromDate: string;
   toDate: string | null;
-  fromTime: null | string;
-  toTime: null | string;
+  fromTime: string;
+  toTime: string;
   leaveReason: string;
   comments: string;
-  leaveStatus: number | string;
+  leaveStatusId: number;
+  leaveStatus: string;
 }
