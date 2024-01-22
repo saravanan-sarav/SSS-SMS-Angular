@@ -28,7 +28,7 @@ export class ParentService {
 
   getStudentProfile(): Observable<AppResponse> {
     return this.apiStudentService.getStudentProfile(
-      this.storageService.getLoggedInUser().studentId!
+      this.storageService.getLoggedInUser().id!
     );
   }
   getAssignmentList(): Observable<AppResponse> {

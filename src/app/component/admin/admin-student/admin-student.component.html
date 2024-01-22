@@ -82,8 +82,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let student of studentUpdateList">
-              <td>{{ student.id }}</td>
+            <tr *ngFor="let student of studentUpdateList; let index = index">
+              <td>{{ index + 1 }}</td>
               <td>{{ student.studentUserId }}</td>
               <td>{{ student.firstName }}</td>
               <td>{{ student.lastName }}</td>

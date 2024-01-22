@@ -7,6 +7,8 @@ import { BehaviorSubject, Observable, Observer, map } from 'rxjs';
 import { AppResponse } from '../model/appResponse';
 import { StorageService } from './storage.service';
 import { AppUser } from '../model/appUser';
+import { CommonService } from './common.service';
+import { LoginAttemptRegisterRequest } from '../model/request/login-attempt-register-request';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +23,8 @@ export class AuthService {
   constructor(
     private router: Router,
     private http: HttpClient,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private commonService: CommonService
   ) {
     if (storageService.getLoggedInUser().id != null) {
       this.setLoggedIn(storageService.getLoggedInUser());
@@ -64,5 +67,20 @@ export class AuthService {
       if (route === null) route = 'parent/home';
       this.router.navigate(['/' + route], { replaceUrl: true });
     }
+  }
+
+  loginAttemptRegister(
+    username: string,
+    latitude: number,
+    longitude: number,
+    ip: string
+  ): Observable<AppResponse> {
+    let loginAttempt: LoginAttemptRegisterRequest = {
+      username: username,
+      latitude: latitude,
+      longitude: longitude,
+      ipAddress: ip,
+    };
+    return this.commonService.loginAttemptRegister(loginAttempt);
   }
 }

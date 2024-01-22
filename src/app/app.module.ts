@@ -9,6 +9,7 @@ import { RegisterComponent } from './component/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import player from 'lottie-web';
 import { LottieModule } from 'ngx-lottie';
@@ -113,6 +114,7 @@ export function pluginsCalender() {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -121,7 +123,6 @@ export function pluginsCalender() {
     FullCalendarModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',
-      closeButton: true,
       progressBar: true,
       timeOut: 5000,
       maxOpened: 5,

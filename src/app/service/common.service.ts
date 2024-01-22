@@ -3,6 +3,7 @@ import { ApiCommonService } from './api/api-common.service';
 import { Observable } from 'rxjs';
 import { AppResponse } from '../model/appResponse';
 import { AssignmentRequest } from '../model/request/assignment-request';
+import { LoginAttemptRegisterRequest } from '../model/request/login-attempt-register-request';
 
 @Injectable({
   providedIn: 'root',
@@ -34,5 +35,8 @@ export class CommonService {
 
   getAllStandard(): Observable<AppResponse> {
     return this.apiCommon.getAllStandards();
+  }
+  loginAttemptRegister(loginAttempt:LoginAttemptRegisterRequest): Observable<AppResponse> {
+    return this.apiCommon.loginAttemptRegister(loginAttempt);
   }
 }

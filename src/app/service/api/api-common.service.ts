@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppResponse } from 'src/app/model/appResponse';
 import { AssignmentRequest } from 'src/app/model/request/assignment-request';
+import { LoginAttemptRegisterRequest } from 'src/app/model/request/login-attempt-register-request';
 import { urlEndpoint } from 'src/app/utils/constant';
 
 @Injectable({
@@ -38,14 +39,21 @@ export class ApiCommonService {
   }
 
   getAllStudentStatus(): Observable<AppResponse> {
-    return this.httpClient.get<AppResponse>(
-      `${urlEndpoint.adminUrl}/status`
-    );
+    return this.httpClient.get<AppResponse>(`${urlEndpoint.adminUrl}/status`);
   }
 
   getAllStandards(): Observable<AppResponse> {
     return this.httpClient.get<AppResponse>(
       `${urlEndpoint.adminUrl}/standard/all`
     );
-  }  
+  }
+
+  loginAttemptRegister(
+    loginAttempt: LoginAttemptRegisterRequest
+  ): Observable<AppResponse> {
+    return this.httpClient.post<AppResponse>(
+      `${urlEndpoint.baseUrl}/email/login/alert`,
+      loginAttempt
+    );
+  }
 }

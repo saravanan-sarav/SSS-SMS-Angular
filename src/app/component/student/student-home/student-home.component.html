@@ -1,4 +1,4 @@
-<div *ngIf="isApproved">
+<div *ngIf="!isApproved">
   <app-student-navbar></app-student-navbar>
   <div class="row col-12">
     <div class="col-1"><app-student-sidebar></app-student-sidebar></div>
@@ -103,7 +103,7 @@
   </div>
 </div>
 
-<div *ngIf="!isApproved">
+<div *ngIf="isApproved">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-6">

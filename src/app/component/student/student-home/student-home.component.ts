@@ -8,14 +8,14 @@ import { StorageService } from 'src/app/service/storage.service';
   styleUrls: ['./student-home.component.css'],
 })
 export class StudentHomeComponent {
-  isApproved: boolean = false;
+  isApproved: boolean = true;
 
   constructor(
     private storageService: StorageService,
     private authService: AuthService
   ) {
     this.isApproved =
-      this.storageService.getLoggedInUser().studentActiveStatus === 1
+      this.storageService.getLoggedInUser().studentActiveStatus === 2
         ? false
         : true;
   }

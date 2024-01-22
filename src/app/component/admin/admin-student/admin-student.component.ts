@@ -210,6 +210,9 @@ export class AdminStudentComponent implements OnInit {
         student.studentUserId == event.target.value ||
         student.firstName
           .toLowerCase()
+          .includes(event.target.value.toLowerCase()) ||
+        student.className
+          .toLowerCase()
           .includes(event.target.value.toLowerCase())
     );
   }
